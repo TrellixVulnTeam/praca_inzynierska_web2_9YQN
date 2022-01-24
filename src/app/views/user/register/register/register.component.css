@@ -1,0 +1,10 @@
+.centerMe{
+    max-width: 1300px;
+    min-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+mat-label{
+    size: 20px;
+}

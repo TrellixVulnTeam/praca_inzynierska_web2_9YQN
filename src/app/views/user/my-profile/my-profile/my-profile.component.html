@@ -1,0 +1,104 @@
+<div class="centerMe">
+<mat-tab-group style="background-color: #686868; margin-left: auto; margin-right: auto;">
+    <mat-tab label="{{userMe.userName}}">
+         <mat-card style="text-align: left; padding-left: 150px; padding-top: 60px; padding-bottom: 60px;">
+             <p>
+                <mat-label style="font-size: 18px;">Nazwa użytkownika:</mat-label>
+                <mat-label style="padding-left: 40px;">{{userMe.userName}}</mat-label>
+             </p>
+             <p>
+              <mat-label style="font-size: 18px;">email:</mat-label>
+              <mat-label style="padding-left: 154px;">{{userMe.email}}</mat-label>
+           </p>
+           <p>
+            <mat-label style="font-size: 18px;">imie:</mat-label>
+            <mat-label style="padding-left: 164px;">{{userMe.name}}</mat-label>
+          </p>
+          <p>
+            <mat-label style="font-size: 18px;">nazwisko:</mat-label>
+            <mat-label style="padding-left: 124px;">{{userMe.surname}}</mat-label>
+          </p>
+          <p>
+            <mat-label style="font-size: 18px;">płeć:</mat-label>
+            <mat-label style="padding-left: 164px;">{{userMe.sex}}</mat-label>
+          </p>
+          <p>
+            <mat-label style="font-size: 18px;">polubienia:</mat-label>
+            <mat-label style="padding-left: 116px;">{{userMe.likes}}</mat-label>
+          </p>
+         </mat-card>        
+          
+    </mat-tab>
+    <mat-tab label="Zmiana hasła"> 
+            <mat-card style="margin-top: 40px; padding-top: 40px;">
+              <mat-label style="font-size: 24px;">ZMIANA HASŁA</mat-label>
+              <mat-card-content>
+            <form [formGroup]="formPassword" (ngSubmit)="changePassword()">
+              <p>
+                <mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 40px">
+                  <mat-label>Poprzednie hasło</mat-label>
+                  <input type="password" matInput placeholder="poprzednie hasło" formControlName="oldPassword">
+                </mat-form-field>
+              </p>
+          
+              <p>
+                <mat-form-field [style.width.px]=350 style="margin: auto;">
+                  <mat-label>Nowe hasło</mat-label>
+                  <input type="password" matInput placeholder="poprzednie hasło" formControlName="newPassword">
+                </mat-form-field>
+              </p>
+          
+              <p>
+                <button type="submit" 
+                mat-raised-button color="accent" 
+                style="margin-top: 30px;">Zmiana hasła</button>
+              </p>
+          
+            </form>
+          
+            </mat-card-content>
+            </mat-card>
+    </mat-tab>
+    <mat-tab label="Aktualizacja danych"> 
+        
+      <mat-card style="margin-top: 40px; padding-top: 40px;">
+        <mat-label style="font-size: 24px;">AKTUALIZACJA DANYCH</mat-label>
+        <mat-card-content>
+      <form [formGroup]="formUpdate" (ngSubmit)="updateUser()">
+        <p>
+          <mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 40px">
+            <mat-label>E-mail</mat-label>
+            <input type="email" matInput placeholder={{userMe.email}} formControlName="email">
+          </mat-form-field>
+        </p>
+    
+        <p>
+          <mat-form-field [style.width.px]=350 style="margin: auto;">
+            <mat-label>Imię</mat-label>
+            <input type="text" matInput placeholder={{userMe.name}} formControlName="firstName">
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field [style.width.px]=350 style="margin: auto;">
+            <mat-label>Nazwisko</mat-label>
+            <input type="text" matInput placeholder={{userMe.surname}} formControlName="lastName">
+          </mat-form-field>
+        </p>
+    
+        <p>
+          <button type="submit" 
+          mat-raised-button color="accent" 
+          style="margin-top: 30px;">Uaktualnij dane</button>
+        </p>
+    
+      </form>
+    
+      </mat-card-content>
+      </mat-card>
+
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+      

@@ -1,0 +1,26 @@
+<mat-card>
+    <mat-list *ngFor="let author of authors">
+        <mat-list-item>
+            <a 
+            mat-button 
+            [routerLink]="['/authors/author', author.id]" 
+            style="margin-right: 40px; font-size: 20px">{{author.surname}} {{author.name}}</a> 
+            
+            | <button mat-raised-button color="primary"
+            [routerLink]="['/authors/approve', author.id]"
+            style="margin-left: 30px; margin-right: 30px; height: 70%; padding: auto;">Zaakceptuj</button>
+                                    
+            | <button mat-raised-button color="warn"
+            [routerLink]="['/authors/delete-author', author.id]"
+            style="margin-left: 30px; margin-right: 30px; height: 70%; padding: auto;">Odrzuć</button>
+            
+            | <a 
+            mat-raised-button color="accent" 
+            [routerLink]="['/authors/edit-author', author.id]"
+            style="margin-left: 30px; margin-right: 30px; height: 70%; padding: auto;">Edytuj</a>
+
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+    </mat-list>
+</mat-card>

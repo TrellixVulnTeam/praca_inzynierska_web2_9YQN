@@ -1,0 +1,50 @@
+<p>
+    <mat-toolbar>
+      <div style="width: 60%;">
+        <a routerLink="/">
+          <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+            <mat-icon>home</mat-icon>
+          </button>
+        </a>
+        <span style="text-align: center;">Lubię czytać...</span>
+      </div>
+      
+      <div class="right-side" *ngIf="!this.auth.loginStatus">
+        <div class="distanse">
+          <a routerLink="/register">
+            <button mat-raised-button color="primary">Rejestacja</button>
+          </a>
+        </div>
+
+        <div class="distanse">
+          <a routerLink="/login">
+            <button mat-raised-button color="accent">Logowanie</button>
+          </a>
+        </div>
+      </div>
+
+      <div class="right-side" *ngIf="this.auth.loginStatus">
+        <div class="distanse">
+          <a routerLing="/">
+            <button mat-raised-button color="accent" (click)="logout()">Wyloguj</button>
+          </a>
+        </div>
+        
+        <div class="distanse">
+          <a routerLink="/profile/me">
+            <button mat-raised-button color="accent">{{this.user.userName}}</button>
+          </a>
+        </div>
+        
+        <div class="distanse"*ngIf="this.permissions.hasPermissions">
+          <a routerLink="/main">
+            <button mat-raised-button color="primary">Panel administracyjny</button>
+          </a>
+        </div>
+        
+        
+
+      </div>
+    </mat-toolbar>
+  </p>
+  

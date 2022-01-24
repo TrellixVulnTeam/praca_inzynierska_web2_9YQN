@@ -1,0 +1,72 @@
+<div class="centerMe" style="min-width: 350px; max-width: 450px; margin:auto; text-align: center;">
+<mat-card>
+  <mat-card-content>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <p>
+    <mat-label style="font-size: 24px">REJESTACJA</mat-label>
+  </p>
+  <p>
+    <mat-form-field [style.width.px]=300 style="margin: auto; margin-top:20px">
+      <mat-label>Nazwa użytkownika:</mat-label>
+      <input type="text" matInput placeholder="nazwa użytkownika" formControlName="username">
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field [style.width.px]=300>
+      <mat-label>Hasło:</mat-label>
+      <input type="password" matInput placeholder="hasło" formControlName="password">
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field [style.width.px]=300>
+      <mat-label>Powtórz hasło:</mat-label>
+      <input type="password" matInput placeholder="hasło" formControlName="repassword">
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field [style.width.px]=300>
+      <input type="email" matInput placeholder="e - mail" formControlName="email">
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field [style.width.px]=300>
+      <mat-label>Imię:</mat-label>
+      <input type="text" matInput placeholder="imię" formControlName="firstName">
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field mat-form-field [style.width.px]=300>
+      <mat-label>Nazwisko:</mat-label>
+      <input type="text" matInput placeholder="nazwisko" formControlName="lastName">
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-label>Wybierz płeć</mat-label>
+  </p>
+
+  <p>
+      <mat-radio-group aria-label="Wybierz płeć" formControlName="sex" style="text-align: left;">
+        <p><mat-radio-button value="kobieta" style="margin-left: 60px;">kobieta</mat-radio-button></p>
+        <p><mat-radio-button value="mężczyzna" style="margin-left: 60px;">mężczyzna</mat-radio-button></p>
+        <p><mat-radio-button value="nie podano" style="margin-left: 60px;">inna</mat-radio-button></p>
+      </mat-radio-group>
+</p>
+
+  <div mat-form-field [style.width.px]=150 style="margin:auto; margin-top: 50px;">
+    <button type="submit" mat-raised-button color="primary" >Rejestracja</button>
+  </div>
+
+</form>
+
+<a mat-flat-button routerLink="/login" style="margin-top: 20px;">Logowanie</a>
+</mat-card-content>
+</mat-card>
+
+</div>
+

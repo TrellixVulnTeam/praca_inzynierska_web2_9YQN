@@ -1,0 +1,12 @@
+<mat-card class="loginCard mat-elevation-z10 " fxLayout="column" fxLayoutAlign="space-evenly strech" fxLayoutGap="10px"
+  @fadeInOut>
+  <mat-card-title>{{ title }}</mat-card-title>
+  <mat-card-content>
+    <p fxflow="row" fxLayoutAlign="space-evenly center">{{message}}</p>
+  </mat-card-content>
+  <mat-dialog-actions align="end">
+    <button mat-raised-button color="warn"
+      (click)="onAccept()">Zatwierdź</button>
+    <button mat-raised-button (click)="onCancel()">Anuluj</button>
+  </mat-dialog-actions>
+</mat-card>

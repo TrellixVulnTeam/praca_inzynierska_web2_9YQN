@@ -1,0 +1,8 @@
+.centerMe{
+    min-width: 300px;
+    max-width: 500px;
+    margin-top: 60px;
+    margin: auto;
+    text-align: center;
+}
+

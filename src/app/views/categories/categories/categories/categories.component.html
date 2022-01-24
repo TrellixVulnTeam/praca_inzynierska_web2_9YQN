@@ -1,0 +1,27 @@
+<mat-card>
+    <mat-list *ngFor="let category of categories">
+        <mat-list-item>
+            <a 
+            mat-button 
+            [routerLink]="['/categories/category', category.id]" 
+            style="margin-right: 40px; font-size: 20px">{{category.category}}</a> 
+            | <a 
+            mat-raised-button color="accent" 
+            [routerLink]="['/categories/edit-category', category.id]"
+            style="margin-left: 30px; margin-right: 30px; height: 70%; padding: auto;">Edytuj</a>
+            | <button mat-raised-button color="warn"
+            [routerLink]="['/categories/delete-category', category.id]"
+            style="margin-left: 30px; margin-right: 30px; height: 70%; padding: auto;">Usuń</button>
+            
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+    </mat-list>
+
+    <a 
+    mat-raised-button 
+    color="primary" 
+    routerLink="/categories/new-category"
+    style="margin-left: 30px; margin-top: 20px;">Nowa kategoria</a>
+</mat-card>
+  
