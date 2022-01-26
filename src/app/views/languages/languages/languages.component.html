@@ -1,0 +1,26 @@
+<mat-card>
+    <mat-list *ngFor="let language of languages">
+        <mat-list-item>
+            <a 
+            mat-button 
+            [routerLink]="['/languages/language', language.id]" 
+            style="margin-right: 40px; font-size: 20px">{{language.language}}</a> 
+            | <a 
+            mat-raised-button color="accent" 
+            [routerLink]="['/languages/edit-language', language.id]"
+            style="margin-left: 30px; margin-right: 30px; height: 70%; padding: auto;">Edytuj</a>
+            | <button mat-raised-button color="warn"
+            [routerLink]="['/languages/delete-language', language.id]"
+            style="margin-left: 30px; margin-right: 30px; height: 70%; padding: auto;">Usuń</button>
+            
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+    </mat-list>
+
+    <a 
+    mat-raised-button 
+    color="primary" 
+    routerLink="/languages/new-language"
+    style="margin-left: 30px; margin-top: 20px;">Nowy język</a>
+</mat-card>

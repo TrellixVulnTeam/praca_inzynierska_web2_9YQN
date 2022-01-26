@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { first } from 'rxjs/operators';
-import { CategoryModel } from 'src/app/models/categories/category-models';
 import { ResponderModel } from 'src/app/models/responders/responder-model';
 import { CategoryService } from 'src/app/services/category/category.service';
 

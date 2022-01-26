@@ -1,0 +1,25 @@
+<div class="centerMe">
+    <mat-card>
+        <mat-card-content style="text-align: left;">
+            <p>
+                <mat-label style="font-size: 18px; padding-left: 20px;">język:</mat-label>
+                <mat-label style="font-size: 14px; padding-left: 20px;">{{language.language}}</mat-label>
+            </p>
+
+            <p>
+                <mat-label style="font-size: 18px; padding-left: 20px;">data utworzenia:</mat-label>
+                <mat-label style="font-size: 14px; padding-left: 20px;">{{language.createdAt | date: 'dd.MM.yyyy'}}</mat-label>
+            </p>
+
+            <p *ngIf="language.isModified === true">
+                <mat-label style="font-size: 18px; padding-left: 20px;">data edycji:</mat-label>
+                <mat-label style="font-size: 14px; padding-left: 20px;">{{language.isModified | date: 'dd.MM.yyyy'}}</mat-label>
+            </p>
+
+            <p>
+                <mat-label style="font-size: 18px; padding-left: 20px;">dodany przez:</mat-label>
+                <mat-label style="font-size: 14px; padding-left: 20px;">{{userName}}</mat-label>
+            </p>
+        </mat-card-content>
+    </mat-card>
+</div>

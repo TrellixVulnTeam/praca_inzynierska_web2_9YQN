@@ -12,8 +12,8 @@ import { NewCategoryComponent } from 'src/app/views/categories/new-category/new-
 
 const routes: Routes = [
   {path: '', children:[
-    {path: '', component: CategoriesComponent},
-    {path: 'category/:id', component: CategoryComponent},
+    {path: '', component: CategoriesComponent, canActivate: [LoginGuard]},
+    {path: 'category/:id', component: CategoryComponent, canActivate: [LoginGuard]},
     {path: 'new-category', component: NewCategoryComponent, canActivate: [LoginGuard, CategoryWriteGuard]},
     {path: 'edit-category/:id', component: EditCategoryComponent, canActivate: [LoginGuard, CategoryUpdateGuard]},
     {path: 'delete-category/:id', component: DeleteCategoryComponent, canActivate: [LoginGuard, CategorySoftDeleteGuard]}

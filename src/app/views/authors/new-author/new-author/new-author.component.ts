@@ -61,7 +61,7 @@ export class NewAuthorComponent{
       this.newAuthor.secondName = this.secondName.value;
     }
     this.newAuthor.biography = this.biography.value;
-    this.newAuthor.biography = this.birthDate.value;
+    this.newAuthor.birthDate = this.birthDate.value;
     if(this.deathDate.value != ''){
       this.newAuthor.deathDate = this.deathDate.value;
     }

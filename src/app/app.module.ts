@@ -20,9 +20,6 @@ import { BookAproveGuard } from './guard/books/book-aprove.guard';
 import { BookSoftDeleteGuard } from './guard/books/book-soft-delete.guard';
 import { BookUpdateGuard } from './guard/books/book-update.guard';
 import { CommentDeleteGuard } from './guard/comments/comment-delete.guard';
-import { LanguageSoftDeleteGuard } from './guard/languages/language-soft-delete.guard';
-import { LanguageUpdateGuard } from './guard/languages/language-update.guard';
-import { LanguageWriteGuard } from './guard/languages/language-write.guard';
 import { PublisherSoftDeleteGuard } from './guard/publishers/publisher-soft-delete.guard';
 import { PublisherUpdateGuard } from './guard/publishers/publisher-update.guard';
 import { PublisherWriteGuard } from './guard/publishers/publisher-write.guard';
@@ -36,6 +33,7 @@ import { SettingsService } from './services/settings/settings.service';
 import { UserService } from './services/user/user.service';
 import { CanDeactivateGuard } from './guard/can-deactivate/can-deactivate-guard';
 import { ConfirmYesNoDialogComponent } from './views/confirm-yes-no-dialog/confirm-yes-no-dialog.component';
+import { AdminPanelComponent } from './views/main/admin-panel/admin-panel.component';
 
 
 @NgModule({
@@ -46,6 +44,8 @@ import { ConfirmYesNoDialogComponent } from './views/confirm-yes-no-dialog/confi
     LoginComponent,
     RegisterComponent,
     ConfirmYesNoDialogComponent,
+    AdminPanelComponent,
+    
   ],
   imports: [
     MaterialModule,
@@ -81,10 +81,6 @@ import { ConfirmYesNoDialogComponent } from './views/confirm-yes-no-dialog/confi
     BookUpdateGuard,
 
     CommentDeleteGuard,
-
-    LanguageSoftDeleteGuard,
-    LanguageUpdateGuard,
-    LanguageWriteGuard,
 
     PublisherSoftDeleteGuard,
     PublisherUpdateGuard,
