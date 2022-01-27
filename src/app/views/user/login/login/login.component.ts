@@ -100,7 +100,6 @@ export class LoginComponent implements ICanComponentDeactivate{
             this.permissionsName[i] = this.userPermissionsArray[i].permissionName;
           }
           this.permissionService.savePermissionsList(this.permissionsName);
-          //window.location.reload();
         }, error => {
           console.error('ErrorHttp: ${JSON.stringify(error)}')
         })

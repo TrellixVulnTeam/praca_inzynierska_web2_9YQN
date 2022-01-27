@@ -67,7 +67,7 @@ export class AuthorService {
     }
 
     getAuthorById(ids: string): Observable<any>{
-      const apiUrl = this.settings.getApiUrl + '/api/author/GetById?id=' + ids;
+      const apiUrl = this.settings.getApiUrl + '/api/author/GetById/' + ids;
 
       return this.httpClient
         .get<ResponderModel>(apiUrl, {withCredentials: true})
@@ -87,7 +87,6 @@ export class AuthorService {
         .pipe(map(responder => {
           return responder;
         }), catchError(error =>{
-          this.toastr.error(error.error);
           return this.handleError(error);
         }));
     }
@@ -119,7 +118,7 @@ export class AuthorService {
     }
 
     softDeleteAuthor(authorId: string): Observable<any>{
-      const apiUrl = this.settings.getApiUrl + '/api/Author/SoftDeleteAuthor?name=' + authorId;
+      const apiUrl = this.settings.getApiUrl + '/api/Author/SoftDeleteAuthor?id=' + authorId ;
 
       return this.httpClient
         .delete<string[]>(apiUrl, httpOptions)

@@ -1,4 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, observable, Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { PermissionService } from 'src/app/services/permissions/permission.service';
@@ -14,7 +15,8 @@ export class NavbarComponent{
   constructor(
     public auth: AuthService,
     public user: UserService,
-    public permissions: PermissionService
+    public permissions: PermissionService,
+    private route: Router
     ) {  
       //this.LoginStatus$ = this.auth.IsLogged();
      }  
@@ -22,6 +24,7 @@ export class NavbarComponent{
   logout(){
     this.permissions.resetPermissions();
     this.auth.signOut();
+    this.route.navigate(['/main']);
   }
     
 }

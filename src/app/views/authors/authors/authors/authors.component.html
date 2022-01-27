@@ -4,14 +4,17 @@
             <a 
             mat-button 
             [routerLink]="['/authors/author', author.id]" 
-            style="margin-right: 40px; font-size: 20px">{{author.surname}} {{author.name}}</a> 
-            | <a 
+            style="margin-right: 40px; font-size: 20px">{{author.surname}} {{author.name}} </a> 
+            <a 
             mat-raised-button color="accent" 
             [routerLink]="['/authors/edit-author', author.id]"
-            style="margin-left: 30px; margin-right: 30px; height: 70%; padding: auto;">Edytuj</a>
-            | <button mat-raised-button color="warn"
+            style="margin-left: 30px; margin-right: 30px; height: 70%; padding: auto;"
+            *ngIf="canEdit">Edytuj</a>
+            <button mat-raised-button color="warn"
             [routerLink]="['/authors/delete-author', author.id]"
-            style="margin-left: 30px; margin-right: 30px; height: 70%; padding: auto;">Usuń</button>
+            style="margin-left: 30px; margin-right: 30px; height: 70%; padding: auto;"
+            *ngIf="canDelete">Usuń</button>
+            
             
         </mat-list-item>
         <mat-divider></mat-divider>
@@ -23,4 +26,10 @@
     color="primary" 
     routerLink="/authors/new-author"
     style="margin-left: auto; margin-right: 40px; margin-top: 20px;">dodaj autora</a>
+    <a 
+    mat-raised-button 
+    color="primary" 
+    routerLink="/authors/approve"
+    style="margin-left: auto; margin-right: 40px; margin-top: 20px;"
+    *ngIf="canApprove">autorzy do zatwierdzenia</a>
 </mat-card>

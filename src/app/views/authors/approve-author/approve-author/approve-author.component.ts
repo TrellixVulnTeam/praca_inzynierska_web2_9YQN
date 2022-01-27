@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { first } from 'rxjs/operators';
 import { AuthorModel } from 'src/app/models/authors/author-model';
@@ -22,7 +22,8 @@ export class ApproveAuthorComponent implements OnInit {
   constructor(
     private authorService: AuthorService,
     private activetedRoute: ActivatedRoute,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
       ) { }
 
   ngOnInit(): void {
@@ -43,6 +44,7 @@ export class ApproveAuthorComponent implements OnInit {
         this.respond = responder;
         this.author = this.respond.object;
         this.approveAuthor();
+        this.router.navigate(['/authors/approve'])
       },
       error =>{
         console.error(`ErrorHttp: ${JSON.stringify(error)}`);

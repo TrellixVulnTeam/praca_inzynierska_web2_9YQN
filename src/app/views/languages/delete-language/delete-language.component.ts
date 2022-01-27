@@ -43,7 +43,8 @@ export class DeleteLanguageComponent implements OnInit {
           this.toastr.show(`język o identyfikatorze ${this.responder.object} został usunięty`);
           this.router.navigate(['/languages']);
         } else {
-          this.toastr.show(this.responder.message);
+          this.toastr.error(this.responder.message);
+          this.router.navigate(['/languages']);
         }
       }, error =>{
         console.log(`ErrorHttp: ${{error}}`);

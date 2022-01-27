@@ -3,7 +3,7 @@ import { first } from 'rxjs/operators';
 import { CategoryModel } from 'src/app/models/categories/category-models';
 import { ResponderModel } from 'src/app/models/responders/responder-model';
 import { CategoryService } from 'src/app/services/category/category.service';
-import { SettingsService } from 'src/app/services/settings/settings.service';
+import { PermissionService } from 'src/app/services/permissions/permission.service';
 
 @Component({
   selector: 'app-categories',
@@ -14,9 +14,13 @@ export class CategoriesComponent implements OnInit {
 
   respond: ResponderModel | any  = new ResponderModel();
   categories: CategoryModel[] = [new CategoryModel()];
+  canEdit: boolean = this.userCanEdit();
+  canDelete: boolean = this.userCanDelete();
+  canAdd: boolean = this.userCanAdd();
 
-  constructor(private settings: SettingsService,
-    private categoryService: CategoryService) { }
+  constructor(
+        private categoryService: CategoryService,
+        private permissionService: PermissionService) { }
 
   ngOnInit(): void {
     this.getCategories();
@@ -33,6 +37,18 @@ export class CategoriesComponent implements OnInit {
       error => {
         console.error(`ErrorHttp: ${JSON.stringify(error)}`);
       })
+  }
+
+  userCanDelete(): boolean{
+    return this.canDelete = this.permissionService.isPermited('Category.Delete');
+  }
+
+  userCanEdit(): boolean{
+    return this.canEdit = this.permissionService.isPermited('Category.Update');
+  }
+
+  userCanAdd(): boolean{
+    return this.canAdd = this.permissionService.isPermited('Category.Write');
   }
 
 }

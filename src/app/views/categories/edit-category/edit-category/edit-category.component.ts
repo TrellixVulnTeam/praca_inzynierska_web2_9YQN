@@ -28,7 +28,7 @@ export class EditCategoryComponent implements OnInit{
     private router: Router,
     private userService: UserService,
     private formBuilder: FormBuilder) {
-      this.categoryName = new FormControl(this.category.category);
+      this.categoryName = new FormControl('');
 
       this.form = this.formBuilder.group({
         categoryName: this.categoryName
@@ -45,7 +45,6 @@ export class EditCategoryComponent implements OnInit{
   }
 
   onSubmit(){
-    this.category.category = this.categoryName;
     this.updateCategory(this.category);
   }
 
@@ -77,7 +76,9 @@ export class EditCategoryComponent implements OnInit{
   }
   
   updateCategory(category: CategoryModel){
-      return this.categoryService
+    this.category.category = this.categoryName.value;
+
+    return this.categoryService
         .updateCategory(category)
         .pipe(first())
         .subscribe(responder =>{

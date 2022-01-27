@@ -19,7 +19,7 @@ const routes: Routes = [
     {path: 'approve', component: ApproveAuthorsComponent, canActivate: [LoginGuard, AuthorApproveGuard]},
     {path: 'approve/:id', component: ApproveAuthorComponent, canActivate: [LoginGuard, AuthorApproveGuard]},
     {path: 'new-author', component: NewAuthorComponent, canActivate: [LoginGuard]},
-    {path: 'edit-author', component: EditAuthorComponent, canActivate: [LoginGuard, AuthorUpdateGuard]},
+    {path: 'edit-author/:id', component: EditAuthorComponent, canActivate: [LoginGuard, AuthorUpdateGuard]},
     {path: 'delete-author/:id', component: DeleteAuthorComponent, canActivate: [LoginGuard, AuthorSoftDeleteGuard]}
   ]},
 ];

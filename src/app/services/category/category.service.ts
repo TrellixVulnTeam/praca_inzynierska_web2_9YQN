@@ -38,7 +38,7 @@ export class CategoryService {
     }
 
     getCategoryById(id: string): Observable<ResponderModel | any>{
-      const apiUrl = this.settings.getApiUrl + '/api/category/GetCategoryById?id=' + id;
+      const apiUrl = this.settings.getApiUrl + '/api/category/GetCategoryById/' + id;
 
       return this.httpClient
         .get(apiUrl)
@@ -91,13 +91,13 @@ export class CategoryService {
           return responder;
         }),
         catchError(error =>{
-          this.toastr.error(error.error);
+          //this.toastr.error(error.error);
           return this.handleError(error);
         }));
     }
 
     softDeleteCategory(id: string): Observable<any>{
-      const apiUrl = this.settings.getApiUrl + '/api/Category/SoftDeleteCategory?name=' + id;
+      const apiUrl = this.settings.getApiUrl + '/api/Category/SoftDeleteCategory?id=' + id;
 
       return this.httpClient
         .delete(apiUrl, httpOptions)

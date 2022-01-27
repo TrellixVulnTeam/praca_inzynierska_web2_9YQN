@@ -37,7 +37,7 @@ export class LanguageService {
     }
 
     getLanguageById(id: string): Observable<ResponderModel | any>{
-      const apiUrl = this.settings.getApiUrl + '/api/Language/GetLanguageById?id=' + id;
+      const apiUrl = this.settings.getApiUrl + '/api/Language/GetLanguageById/' + id;
 
       return this.httpClient
         .get(apiUrl, httpOptions)
@@ -61,6 +61,20 @@ export class LanguageService {
         catchError(error =>{
           this.toastr.error(error.error);
           return this.handleError(error);
+        }));
+    }
+
+    updateLanguage(language: LanguageModel): Observable<ResponderModel | any>{
+      const apiUrl = this.settings.getApiUrl + '/api/Language/UpdateLanguage';
+
+      return this.httpClient
+        .put(apiUrl, language, httpOptions)
+        .pipe(map(response =>{
+          return response;
+        }),
+        catchError(error =>{
+          return this.handleError(error);
+          
         }));
     }
 

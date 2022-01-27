@@ -1,1 +1,28 @@
-<p>edit-language works!</p>
+<div class="centerMe">
+    <mat-card style="margin-top: 40px; padding-top: 40px;">
+      <mat-label style="font-size: 24px;">Zmiana nazwy języka</mat-label>
+      <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <p>
+        <mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 40px">
+          <mat-label>Język: {{language.language}}</mat-label>
+          <input type="text" matInput placeholder={{language.language}} formControlName="languageName">
+        </mat-form-field>
+      </p>
+
+      <p style="margin-left: 60px; text-align: left;">
+        <!--<mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 40px"> -->
+          <mat-label style="padding-left: 0px; text-align: left;">Dodano przez:</mat-label>
+          <mat-label style="padding-left: 20px;">{{userName}}</mat-label>
+        <!-- </mat-form-field> -->
+      </p>
+   
+      <p>
+        <button type="submit" mat-raised-button color="accent" style="margin-top: 30px;">Zmień</button>
+      </p>
+  
+    </form>
+  
+    </mat-card-content>
+    </mat-card>
+  </div>
