@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { BookService } from 'src/app/services/book/book.service';
 
 @Component({
   selector: 'app-approve-book',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApproveBookComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private bookService: BookService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }

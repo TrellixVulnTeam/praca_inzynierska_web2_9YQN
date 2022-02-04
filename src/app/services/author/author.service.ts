@@ -31,7 +31,7 @@ export class AuthorService {
     private settings: SettingsService,
     private bookAuthorService: BookAuthorService,) { }
 
-    getAllAuthors(): Observable<ResponderModel>{
+    public getAllAuthors(): Observable<ResponderModel>{
       const apiUrl = this.settings.getApiUrl + '/api/Author/GetAllAuthors';
 
       return this.httpClient
@@ -44,7 +44,7 @@ export class AuthorService {
         }));
     }
 
-    getAllAuthorsToApprove(): Observable<ResponderModel>{
+    public getAllAuthorsToApprove(): Observable<ResponderModel>{
       const apiUrl = this.settings.getApiUrl + '/api/Author/GetAuthorsToApprove';
 
       return this.httpClient
@@ -57,7 +57,7 @@ export class AuthorService {
         }));
     }
 
-    getAuthorByName(name: string): Observable<ResponderModel>{
+    public getAuthorByName(name: string): Observable<ResponderModel>{
       const apiUrl = this.settings.getApiUrl + '/api/author/FindAuthorsByName?name=' + name;
 
       return this.httpClient
@@ -70,7 +70,7 @@ export class AuthorService {
         }));
     }
 
-    getAuthorById(id: string): Observable<any>{
+    public getAuthorById(id: string): Observable<any>{
       const apiUrl = this.settings.getApiUrl + '/api/author/GetById/' + id;
 
       return this.httpClient
@@ -83,7 +83,7 @@ export class AuthorService {
         }));
     }
 
-    getAuthorsIds(bookId: string){
+    public getAuthorsIds(bookId: string){
         return this.bookAuthorService
           .getAuthorsIdsByBook(bookId)
           .pipe(first())
@@ -97,7 +97,7 @@ export class AuthorService {
           })
     }
 
-    getAuthorByIds(bookId: string): Observable<ResponderModel | any>{
+    public getAuthorByIds(bookId: string): Observable<ResponderModel | any>{
       this.getAuthorsIds(bookId);
 
       const apiUrl = this.settings + '/api/Author/GetAuthorsByIds/';
@@ -112,7 +112,7 @@ export class AuthorService {
         }));
     }
 
-    createAuthor(author: AuthorModel): Observable<any>{
+    public createAuthor(author: AuthorModel): Observable<any>{
       const apiUrl = this.settings.getApiUrl + '/api/author/CreateAuthor';
 
       return this.httpClient
@@ -124,7 +124,7 @@ export class AuthorService {
         }));
     }
 
-    approveAuthor(author: AuthorModel): Observable<any>{
+    public approveAuthor(author: AuthorModel): Observable<any>{
       const apiUrl = this.settings.getApiUrl + '/api/author/ApproveAuthor';
 
       return this.httpClient
@@ -137,7 +137,7 @@ export class AuthorService {
         }));
     }
 
-    updateAuthor(author: AuthorModel): Observable<any>{
+    public updateAuthor(author: AuthorModel): Observable<any>{
       const apiUrl = this.settings.getApiUrl + '/api/author/UpdateAuthor';
 
       return this.httpClient
@@ -150,7 +150,7 @@ export class AuthorService {
         }));
     }
 
-    softDeleteAuthor(authorId: string): Observable<any>{
+    public softDeleteAuthor(authorId: string): Observable<any>{
       const apiUrl = this.settings.getApiUrl + '/api/Author/SoftDeleteAuthor?id=' + authorId ;
 
       return this.httpClient

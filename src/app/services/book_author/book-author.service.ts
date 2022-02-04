@@ -23,7 +23,7 @@ export class BookAuthorService {
     private settings: SettingsService
   ) { }
 
-  getAuthorsIdsByBook(id: string): Observable<ResponderModel | any>{
+  public getAuthorsIdsByBook(id: string): Observable<ResponderModel | any>{
     const apiUrl = this.settings.getApiUrl + '/api/Book_Author/GetAllAuthorsByBook/' + id;
 
     return this.httpClient
@@ -35,7 +35,7 @@ export class BookAuthorService {
       }));
   }
 
-  handleError(error: HttpErrorResponse): Observable<never>{
+  private handleError(error: HttpErrorResponse): Observable<never>{
     return throwError(error);
   }
 }

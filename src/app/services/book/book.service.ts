@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { BookModel } from 'src/app/models/books/book.model';
 import { ResponderModel } from 'src/app/models/responders/responder-model';
 import { BookAuthorService } from '../book_author/book-author.service';
 import { SettingsService } from '../settings/settings.service';
@@ -30,7 +31,7 @@ export class BookService {
     private user: UserService) {
    }
 
-   getAllBooks(): Observable<ResponderModel | any>{
+  public getAllBooks(): Observable<ResponderModel | any>{
      const apiUrl = this.setting.getApiUrl + '/api/Book/GetAllBooks';
 
      return this.httpClient
@@ -43,7 +44,7 @@ export class BookService {
       }));
    }
 
-   getBooksToApprove(): Observable<ResponderModel | any>{
+  public getBooksToApprove(): Observable<ResponderModel | any>{
     const apiUrl = this.setting.getApiUrl + '/api/Book/GetBooksToAprrove';
 
      return this.httpClient
@@ -55,7 +56,7 @@ export class BookService {
       }));
    }
   
-   getBookById(id: string): Observable<ResponderModel | any>{
+  public getBookById(id: string): Observable<ResponderModel | any>{
      const apiUrl = this.setting.getApiUrl + '/api/Book/GetBookById/' + id;
 
      return this.httpClient
@@ -67,6 +68,31 @@ export class BookService {
         return this.handleError(error);
       }))
    }
+
+   public approveBook(id: string): Observable<ResponderModel | any>{
+     const apiUrl = this.setting.getApiUrl + '/api/Book/ApproveBooks';
+
+     return this.httpClient
+      .put<string>(apiUrl, id, httpOptions)
+      .pipe(map(response =>{
+        return response;
+      }), catchError(error =>{
+        return this.handleError(error);
+      }))
+   }
+
+  public deleteBook(id: string): Observable<ResponderModel | any>{
+    const apiUrl = this.setting.getApiUrl + '/api/Book/SoftDeleteBooks/' + id;
+
+    return this.httpClient
+      .delete(apiUrl, httpOptions)
+      .pipe(map(response =>{
+        return response;
+      }),
+      catchError(error =>{
+        return this.handleError(error);
+      }));
+  }
 
    private handleError(error: HttpErrorResponse): Observable<never> {
     console.log(`HttpError: ${JSON.stringify(error)}`);
