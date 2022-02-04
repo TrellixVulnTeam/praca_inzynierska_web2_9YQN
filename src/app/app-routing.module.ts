@@ -20,9 +20,11 @@ const routes: Routes = [
 
 
   {path: 'profile', loadChildren: () => import('./modules/profile/profile.module').then(m => m.ProfileModule)},
+  {path: 'books', loadChildren: () => import('./modules/book/book.module').then(m => m.BookModule)},
   {path: 'authors', loadChildren: () => import('./modules/author/author.module').then(m => m.AuthorModule)},
   {path: 'categories', loadChildren: () => import('./modules/category/category.module').then(m => m.CategoryModule)},
   {path: 'languages', loadChildren: () => import('./modules/language/language.module').then(m => m.LanguageModule)},
+  {path: 'publishers', loadChildren: () => import('./modules/publisher/publisher.module').then(m => m.PublisherModule)},
   
   ];
   

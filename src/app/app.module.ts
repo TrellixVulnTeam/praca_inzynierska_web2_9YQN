@@ -20,9 +20,6 @@ import { BookAproveGuard } from './guard/books/book-aprove.guard';
 import { BookSoftDeleteGuard } from './guard/books/book-soft-delete.guard';
 import { BookUpdateGuard } from './guard/books/book-update.guard';
 import { CommentDeleteGuard } from './guard/comments/comment-delete.guard';
-import { PublisherSoftDeleteGuard } from './guard/publishers/publisher-soft-delete.guard';
-import { PublisherUpdateGuard } from './guard/publishers/publisher-update.guard';
-import { PublisherWriteGuard } from './guard/publishers/publisher-write.guard';
 import { UserPermissionDeleteGuard } from './guard/user-permissions/user-permission-delete.guard';
 import { UserPermissionUpdateGuard } from './guard/user-permissions/user-permission-update.guard';
 import { UserPermissionWriteGuard } from './guard/user-permissions/user-permission-write.guard';
@@ -34,6 +31,14 @@ import { UserService } from './services/user/user.service';
 import { CanDeactivateGuard } from './guard/can-deactivate/can-deactivate-guard';
 import { ConfirmYesNoDialogComponent } from './views/confirm-yes-no-dialog/confirm-yes-no-dialog.component';
 import { AdminPanelComponent } from './views/main/admin-panel/admin-panel.component';
+import { BooksComponent } from './views/books/books/books.component';
+import { BookComponent } from './views/books/book/book.component';
+import { ListBooksComponent } from './views/books/list-books/list-books.component';
+import { ApproveBooksComponent } from './views/books/approve-books/approve-books.component';
+import { ApproveBookComponent } from './views/books/approve-book/approve-book.component';
+import { EditBookComponent } from './views/books/edit-book/edit-book.component';
+import { NewBookComponent } from './views/books/new-book/new-book.component';
+import { DeleteBookComponent } from './views/books/delete-book/delete-book.component';
 
 
 @NgModule({
@@ -45,7 +50,7 @@ import { AdminPanelComponent } from './views/main/admin-panel/admin-panel.compon
     RegisterComponent,
     ConfirmYesNoDialogComponent,
     AdminPanelComponent,
-    
+ 
   ],
   imports: [
     MaterialModule,
@@ -71,20 +76,11 @@ import { AdminPanelComponent } from './views/main/admin-panel/admin-panel.compon
     PermissionService,
     SettingsService,
 
-
     LoginGuard,
 
     BookAuthorDeleteGuard,
 
-    BookAproveGuard,
-    BookSoftDeleteGuard,
-    BookUpdateGuard,
-
     CommentDeleteGuard,
-
-    PublisherSoftDeleteGuard,
-    PublisherUpdateGuard,
-    PublisherWriteGuard,
 
     UserPermissionDeleteGuard,
     UserPermissionUpdateGuard,

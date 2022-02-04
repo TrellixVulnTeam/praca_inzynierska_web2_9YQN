@@ -1,0 +1,68 @@
+<mat-card>
+    <mat-list>
+        <mat-list-item>
+            <p>
+                <mat-label style="font-size: 18px; padding-left: 26px;">Tytuł:</mat-label>
+                <mat-label style="font-size: 14px; padding-left: 22px;">{{book.title}}</mat-label>
+            </p>            
+            
+            <p *ngIf="book.series != null">
+                <mat-label style="font-size: 18px; padding-left: 20px;">Seria:</mat-label>
+                <mat-label style="font-size: 14px; padding-left: 20px;">{{book.series}}</mat-label>
+            </p>  
+
+            <p *ngIf="book.subtitle != null">
+                <mat-label style="font-size: 18px; padding-left: 20px;">Podtytuł:</mat-label>
+                <mat-label style="font-size: 14px; padding-left: 20px;">{{book.subtitle}}</mat-label>
+            </p>
+
+            <p>
+                <mat-label style="font-size: 18px; padding-left: 20px;">Kategoria:</mat-label>
+                <mat-label style="font-size: 14px; padding-left: 20px;">{{category.category}}</mat-label>
+            </p>
+
+            <p>
+                <mat-label style="font-size: 18px; padding-left: 20px;">Język:</mat-label>
+                <mat-label style="font-size: 14px; padding-left: 20px;">{{language.language}}</mat-label>
+            </p>
+
+            <p>
+                <mat-label style="font-size: 18px; padding-left: 20px;">Opis:</mat-label>
+                <mat-label style="font-size: 14px; padding-left: 16px; text-align: justify;">{{book.description}}</mat-label>
+            </p>
+
+            <p>
+                <mat-label style="font-size: 18px; padding-left: 20px;">Wydawca:</mat-label>
+                <a mat-button 
+                [routerLink]="['/publishers/publisher', book.publisherId]"
+                style="font-size: 14px; padding-left: 20px;">{{publisher.publisherName}}</a>
+            </p>
+
+            <p>
+                <mat-label style="font-size: 18px; padding-left: 20px;">ISBN:</mat-label>
+                <mat-label style="font-size: 14px; padding-left: 20px;">{{book.isbn}}</mat-label>
+            </p>
+
+            <p>
+                <mat-label style="font-size: 18px; padding-left: 20px;">Rok wydania:</mat-label>
+                <mat-label style="font-size: 14px; padding-left: 20px;">{{book.publishedYear}}</mat-label>
+            </p>
+
+            <p *ngIf="book.pages != null">
+                <mat-label style="font-size: 18px; padding-left: 20px;">Strony:</mat-label>
+                <mat-label style="font-size: 14px; padding-left: 20px;">{{book.pages}}</mat-label>
+            </p>
+
+            <p>
+                <mat-label style="font-size: 18px; padding-left: 20px;">Dodana przez:</mat-label>
+                <mat-label style="font-size: 14px; padding-left: 20px;">{{userName}}</mat-label>
+            </p>
+
+
+    imageCoverId: string = '00000000-0000-0000-0000-000000000000';
+
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+    </mat-list>
+</mat-card>

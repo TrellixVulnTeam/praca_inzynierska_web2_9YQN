@@ -78,7 +78,7 @@ export class UserService {
   }
 
   getUserNameById(id: string): Observable<ResponderModel | any> {
-    const apiUrl = this.settingsService.getApiUrl + '/api/User/GetUserNameById?id=' + id;
+    const apiUrl = this.settingsService.getApiUrl + '/api/User/GetUserNameById/' + id;
 
     return this.httpClient
       .get<ResponderModel>(apiUrl)

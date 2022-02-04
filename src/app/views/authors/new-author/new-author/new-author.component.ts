@@ -33,11 +33,11 @@ export class NewAuthorComponent{
     private router: Router,
     private formBuilder: FormBuilder) {
       this.surname = new FormControl(''), [Validators.required];
-      this.name = new FormControl('');
-      this.secondName = new FormControl('');
+      this.name = new FormControl();
+      this.secondName = new FormControl();
       this.biography = new FormControl(''), [Validators.required];
       this.birthDate = new FormControl(''), [Validators.required];
-      this.deathDate = new FormControl(''); 
+      this.deathDate = new FormControl(); 
 
       this.form = this.formBuilder.group({
         surname: this.surname,
@@ -54,17 +54,11 @@ export class NewAuthorComponent{
 
     this.newAuthor.isBuildIn = true;
     this.newAuthor.surname = this.surname.value;
-    if(this.name.value != ''){
-      this.newAuthor.name = this.name.value;
-    }
-    if(this.secondName.value != ''){
-      this.newAuthor.secondName = this.secondName.value;
-    }
+    this.newAuthor.name = this.name.value;
+    this.newAuthor.secondName = this.secondName.value;
     this.newAuthor.biography = this.biography.value;
     this.newAuthor.birthDate = this.birthDate.value;
-    if(this.deathDate.value != ''){
-      this.newAuthor.deathDate = this.deathDate.value;
-    }
+    this.newAuthor.deathDate = this.deathDate.value;
     this.newAuthor.addedBy = this.userId;
 
     this.authorService

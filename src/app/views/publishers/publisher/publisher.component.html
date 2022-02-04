@@ -1,0 +1,28 @@
+<div class="centerMe">
+    <mat-card>
+        <mat-card-content style="text-align: left;">
+            <p>
+                <mat-label style="font-size: 18px; padding-left: 20px;">język:</mat-label>
+                <mat-label style="font-size: 14px; padding-left: 20px;">{{publisher.publisherName}}</mat-label>
+            </p>
+
+            <p *ngIf="publisher.street != null">
+                <mat-label style="font-size: 18px; padding-left: 20px;">adres:</mat-label>
+                <mat-label style="font-size: 14px; padding-left: 20px;">{{publisher.street}} </mat-label>
+                <mat-label style="font-size: 14px; padding-left: 20px;" *ngIf="publisher.building != null">{{publisher.building}} </mat-label>
+                <mat-label style="font-size: 14px; padding-left: 20px;" *ngIf="publisher.premises != ''">lok. {{publisher.premises}} </mat-label>
+            </p>
+
+            <p *ngIf="publisher.postCode != null && publisher.city != null">
+                <mat-label style="font-size: 18px; padding-left: 20px;">miasto:</mat-label>
+                <mat-label style="font-size: 14px; padding-left: 20px;">{{publisher.postCode}}</mat-label>
+                <mat-label style="font-size: 14px; padding-left: 20px;">{{publisher.city}}</mat-label>
+            </p>
+
+            <p>
+                <mat-label style="font-size: 18px; padding-left: 20px;">dodany przez:</mat-label>
+                <mat-label style="font-size: 14px; padding-left: 20px;">{{username}}</mat-label>
+            </p>
+        </mat-card-content>
+    </mat-card>
+</div>

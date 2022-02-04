@@ -1,3 +1,4 @@
+import { FixedSizeVirtualScrollStrategy } from '@angular/cdk/scrolling';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -66,8 +67,8 @@ export class AuthorService {
         }));
     }
 
-    getAuthorById(ids: string): Observable<any>{
-      const apiUrl = this.settings.getApiUrl + '/api/author/GetById/' + ids;
+    getAuthorById(id: string): Observable<any>{
+      const apiUrl = this.settings.getApiUrl + '/api/author/GetById/' + id;
 
       return this.httpClient
         .get<ResponderModel>(apiUrl, {withCredentials: true})
@@ -75,6 +76,19 @@ export class AuthorService {
           return responder;
         }), catchError(error =>{
           this.toastr.error(error.error);
+          return this.handleError(error);
+        }));
+    }
+
+    getAuthorByIds(ids: string[]): Observable<ResponderModel | any>{
+      const apiUrl = this.settings + '/api/Author/GetAuthorsByIds/';
+      httpOptions.params.append('ids', ids.join(','));
+
+      return this.httpClient
+        .get(apiUrl, httpOptions)
+        .pipe(map(respond =>{
+          return respond;
+        }), catchError(error =>{
           return this.handleError(error);
         }));
     }

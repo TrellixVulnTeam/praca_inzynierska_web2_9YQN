@@ -5,7 +5,6 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { LanguageModel } from 'src/app/models/languages/language.model';
 import { ResponderModel } from 'src/app/models/responders/responder-model';
-import { PermissionService } from '../permissions/permission.service';
 import { SettingsService } from '../settings/settings.service';
 
 const httpOptions = {

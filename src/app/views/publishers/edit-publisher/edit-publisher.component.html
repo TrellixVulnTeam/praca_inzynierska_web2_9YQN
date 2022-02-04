@@ -1,0 +1,61 @@
+<div class="centerMe">
+    <mat-card style="margin-top: 40px; padding-top: 40px;">
+      <mat-label style="font-size: 24px;">Edycja wydawcy</mat-label>
+      <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <p>
+        <mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 40px">
+          <mat-label>Nazwa: {{publisher.publisherName}}</mat-label>
+          <input type="text" matInput placeholder={{publisher.publisherName}} formControlName="publisherName">
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 40px">
+          <mat-label>kod pocztowy: {{publisher.postCode}}</mat-label>
+          <input type="text" matInput placeholder={{publisher.postCode}} formControlName="postCode">
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 40px">
+          <mat-label>miasto: {{publisher.city}}</mat-label>
+          <input type="text" matInput placeholder={{publisher.city}} formControlName="city">
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 40px">
+          <mat-label>ulica: {{publisher.street}}</mat-label>
+          <input type="text" matInput placeholder={{publisher.street}} formControlName="street">
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 40px">
+          <mat-label>nr budynku: {{publisher.building}}</mat-label>
+          <input type="text" matInput placeholder={{publisher.building}} formControlName="building">
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 40px">
+          <mat-label>nr lokalu: {{publisher.premises}}</mat-label>
+          <input type="text" matInput placeholder={{publisher.premises}} formControlName="premises">
+        </mat-form-field>
+      </p>
+
+      <p style="margin-left: 60px; text-align: left;">     
+          <mat-label style="padding-left: 0px; text-align: left;">Dodano przez:</mat-label>
+          <mat-label style="padding-left: 20px;">{{username}}</mat-label>
+      </p>
+   
+      <p>
+        <button type="submit" mat-raised-button color="accent" style="margin-top: 30px;">Zmień</button>
+      </p>
+  
+    </form>
+  
+    </mat-card-content>
+    </mat-card>
+  </div>

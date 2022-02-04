@@ -70,7 +70,7 @@ export class LoginComponent implements ICanComponentDeactivate{
         this.auth.saveType(this.tokenLogin.type);
         this.auth.saveToken(this.tokenLogin.token);
         if(this.tokenLogin.token.length > 2){
-          this.toastr.success("jesteś zalogowany");
+          this.toastr.show("jesteś zalogowany");
           this.saveUsernameAndId();
         }
       },
