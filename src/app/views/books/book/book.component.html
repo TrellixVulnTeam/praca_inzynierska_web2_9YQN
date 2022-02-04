@@ -17,6 +17,18 @@
             </p>
 
             <p>
+                <mat-label style="font-size: 18px; padding-left: 20px;">Autorzy:</mat-label>
+                <mat-list *ngFor="let author of authors">
+                    <mat-list-item>
+                        <p>
+                            
+                            <mat-label style="font-size: 14px; padding-left: 20px;">{{author.name}} {{author.surname}}</mat-label>
+                        </p>
+                    </mat-list-item>
+                </mat-list>
+            </p>
+
+            <p>
                 <mat-label style="font-size: 18px; padding-left: 20px;">Kategoria:</mat-label>
                 <mat-label style="font-size: 14px; padding-left: 20px;">{{category.category}}</mat-label>
             </p>

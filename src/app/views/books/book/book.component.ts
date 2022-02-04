@@ -2,16 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { first } from 'rxjs/operators';
+import { AuthorModel } from 'src/app/models/authors/author-model';
 import { BookModel } from 'src/app/models/books/book.model';
 import { CategoryModel } from 'src/app/models/categories/category-models';
 import { LanguageModel } from 'src/app/models/languages/language.model';
 import { PublisherModel } from 'src/app/models/publishers/punblisher.model';
 import { ResponderModel } from 'src/app/models/responders/responder-model';
+import { AuthorService } from 'src/app/services/author/author.service';
 import { BookService } from 'src/app/services/book/book.service';
 import { CategoryService } from 'src/app/services/category/category.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { PublisherService } from 'src/app/services/publisher/publisher.service';
 import { UserService } from 'src/app/services/user/user.service';
+
 
 @Component({
   selector: 'app-book',
@@ -26,10 +29,12 @@ export class BookComponent implements OnInit {
   category: CategoryModel = new CategoryModel;
   language: LanguageModel = new LanguageModel;
   publisher: PublisherModel = new PublisherModel;
+  authors: AuthorModel[] = [new AuthorModel];
 
 
   constructor(
     private activetedRoute: ActivatedRoute,
+    private authorService: AuthorService,
     private bookService: BookService,
     private userService: UserService,
     private categoryService: CategoryService,
@@ -70,6 +75,20 @@ export class BookComponent implements OnInit {
       .subscribe(response =>{
         this.userName = response;
       })
+  }
+
+  getAuthors(id: string){
+    return this.authorService
+      .getAuthorByIds(id)
+      .pipe(first())
+      .subscribe(respond =>{
+        this.responder = respond;
+        if(this.responder.object != null){
+          this.authors = this.responder.object;
+        } 
+      }, error =>{
+        console.log(`HttpError: ${JSON.stringify(error)}`);
+      });
   }
 
   getCategory(id: string){

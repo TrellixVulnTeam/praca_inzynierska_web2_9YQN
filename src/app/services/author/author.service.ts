@@ -1,12 +1,12 @@
-import { FixedSizeVirtualScrollStrategy } from '@angular/cdk/scrolling';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, first, map } from 'rxjs/operators';
 import { AuthorModel } from 'src/app/models/authors/author-model';
 import { ResponderModel } from 'src/app/models/responders/responder-model';
+import { BookAuthorService } from '../book_author/book-author.service';
 import { SettingsService } from '../settings/settings.service';
 
 const httpOptions = {
@@ -21,12 +21,15 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthorService {
+  ids: string[] = [];
+  responder: ResponderModel | any;
 
   constructor(
     private httpClient: HttpClient,
     private router: Router,
     private toastr: ToastrService,
-    private settings: SettingsService) { }
+    private settings: SettingsService,
+    private bookAuthorService: BookAuthorService,) { }
 
     getAllAuthors(): Observable<ResponderModel>{
       const apiUrl = this.settings.getApiUrl + '/api/Author/GetAllAuthors';
@@ -80,9 +83,25 @@ export class AuthorService {
         }));
     }
 
-    getAuthorByIds(ids: string[]): Observable<ResponderModel | any>{
+    getAuthorsIds(bookId: string){
+        return this.bookAuthorService
+          .getAuthorsIdsByBook(bookId)
+          .pipe(first())
+          .subscribe(respond =>{
+            this.responder = respond;
+            if(this.responder.object != null){
+              this.ids = this.responder.object;
+            }
+          },error =>{
+            console.log(`HttpError: ${JSON.stringify(error)}`);
+          })
+    }
+
+    getAuthorByIds(bookId: string): Observable<ResponderModel | any>{
+      this.getAuthorsIds(bookId);
+
       const apiUrl = this.settings + '/api/Author/GetAuthorsByIds/';
-      httpOptions.params.append('ids', ids.join(','));
+      httpOptions.params.append('ids', this.ids.join(','));
 
       return this.httpClient
         .get(apiUrl, httpOptions)

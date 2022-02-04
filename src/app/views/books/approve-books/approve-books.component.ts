@@ -3,6 +3,7 @@ import { first } from 'rxjs/operators';
 import { BookModel } from 'src/app/models/books/book.model';
 import { ResponderModel } from 'src/app/models/responders/responder-model';
 import { BookService } from 'src/app/services/book/book.service';
+import { PermissionService } from 'src/app/services/permissions/permission.service';
 
 @Component({
   selector: 'app-approve-books',
@@ -12,9 +13,13 @@ import { BookService } from 'src/app/services/book/book.service';
 export class ApproveBooksComponent implements OnInit {
   responder: ResponderModel | any = new ResponderModel;
   books: BookModel[] = [];
+  canApprove: boolean = this.userHasPermission('Book.Approve');
+  canEdit: boolean = this.userHasPermission('Book.Update');
+  canDelete: boolean = this.userHasPermission('Book.SoftDelete');
 
   constructor(
     private bookService: BookService,
+    private permissionService: PermissionService,
 
   ) { }
 
@@ -34,6 +39,10 @@ export class ApproveBooksComponent implements OnInit {
           
         }
       })
+  }
+
+  userHasPermission(hasPermission: string):boolean{
+    return this.permissionService.isPermited(hasPermission);
   }
 
 }
