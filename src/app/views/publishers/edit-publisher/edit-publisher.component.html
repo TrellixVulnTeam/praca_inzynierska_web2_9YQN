@@ -1,11 +1,11 @@
 <div class="centerMe">
     <mat-card style="margin-top: 40px; padding-top: 40px;">
-      <mat-label style="font-size: 24px;">Edycja wydawcy</mat-label>
+      <mat-label style="font-size: 24px;">Edytuj wydawnictwo</mat-label>
       <mat-card-content>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <p>
         <mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 40px">
-          <mat-label>Nazwa: {{publisher.publisherName}}</mat-label>
+          <mat-label>Wydawnictwo: {{publisher.publisherName}}</mat-label>
           <input type="text" matInput placeholder={{publisher.publisherName}} formControlName="publisherName">
         </mat-form-field>
       </p>

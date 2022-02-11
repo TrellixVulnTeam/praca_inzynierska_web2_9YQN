@@ -1,12 +1,21 @@
 <p>
     <mat-toolbar>
       <div style="width: 60%;">
-        <a routerLink="/">
           <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
-            <mat-icon>home</mat-icon>
+            <mat-icon [matMenuTriggerFor]="menu">home</mat-icon>
+            <mat-menu #menu="matMenu">
+              <a button mat-menu-item [routerLink]="['/books']">książki</a>
+              <mat-divider></mat-divider>
+              <a button mat-menu-item [routerLink]="['/authors']">autorzy</a>
+              <mat-divider></mat-divider>
+              <a button mat-menu-item [routerLink]="['/categories']">kategorie</a>
+              <mat-divider></mat-divider>
+              <a button mat-menu-item [routerLink]="['/publishers']">wydawnictwa</a>
+              <mat-divider></mat-divider>
+              <a mat-menu-item [routerLink]="['/languages']">języki</a>
+            </mat-menu>
           </button>
-        </a>
-        <span style="text-align: center;">Lubię czytać...</span>
+        <span style="text-align: center;"><a mat-button [routerLink]="['/']">Lubię czytać...</a></span>
       </div>
       
       <div class="right-side" *ngIf="!this.auth.loginStatus">

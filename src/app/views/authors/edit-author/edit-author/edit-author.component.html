@@ -1,1 +1,60 @@
-<p>edit-author works!</p>
+<div class="centerMe">
+    <mat-card style="margin-top: 40px; padding-top: 40px;">
+      <mat-label style="font-size: 24px;">Edycja autora</mat-label>
+      <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <p>
+        <mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 40px">
+          <mat-label>nazwisko: {{author.surname}}</mat-label>
+          <input type="text" value={{author.surname}} matInput placeholder={{author.surname}} formControlName="surname">
+        </mat-form-field>
+      </p>
+   
+      <p>
+        <mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 20px">
+          <mat-label>imię: {{author.name}}</mat-label>
+          <input type="text" value={{author.name}} matInput placeholder={{author.name}} formControlName="name">
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 20px">
+          <mat-label>drugie imię: {{author.secondName}}</mat-label>
+          <input type="text" value={{author.secondName}} matInput placeholder={{author.secondName}} formControlName="secondName">
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 20px">
+          <mat-label>biorgrafia: {{author.biography}}</mat-label>
+          <textarea type="text" value={{author.biography}} matInput placeholder={{author.biography}} formControlName="biography"></textarea>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 20px">
+            <mat-label>Data urodzin: {{author.birthDate | date :'dd MMMM yyyy': '' : 'Pl-pl'}} </mat-label>
+            <input value={{author.birthDate}} matInput [matDatepicker]="dateOfBirth" formControlName="birthDate">
+            <mat-datepicker-toggle matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
+            <mat-datepicker #dateOfBirth></mat-datepicker>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 20px">
+            <mat-label>Data śmierci: {{author.deathDate | date :'dd MMMM yyyy': '' : 'Pl-pl'}}</mat-label>
+            <input value="{{author.deathDate | date :'dd MMMM yyyy': '' : 'Pl-pl'}}" matInput [matDatepicker]="picker" formControlName="deathDate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <button type="submit" mat-raised-button color="accent" style="margin-top: 30px;">Zmień</button>
+      </p>
+  
+    </form>
+  
+    </mat-card-content>
+    </mat-card>
+  </div>

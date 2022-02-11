@@ -1,0 +1,13 @@
+<mat-card>
+    <mat-list *ngFor="let book of books">
+        <mat-list-item>
+            <a 
+            mat-button 
+            [routerLink]="['/books/book', book.id]" 
+            style="margin-right: 40px; font-size: 20px">{{book.title}} </a>            
+            
+        </mat-list-item>
+        <mat-divider></mat-divider>
+    </mat-list>
+
+</mat-card>

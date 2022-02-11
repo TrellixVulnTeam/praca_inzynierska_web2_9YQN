@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Form, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable, of } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { ResponderModel } from 'src/app/models/responders/responder-model';
 import { UserModel } from 'src/app/models/users/user-model';
 import { UserService } from 'src/app/services/user/user.service';
-import { ConfirmYesNoDialogComponent } from 'src/app/views/confirm-yes-no-dialog/confirm-yes-no-dialog.component';
-import { ConfirmYesNoDialogModel } from 'src/app/views/confirm-yes-no-dialog/models/confirm-yes-no-dialog-model';
+
 
 @Component({
   selector: 'app-my-profile',

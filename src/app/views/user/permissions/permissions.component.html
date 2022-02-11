@@ -1,0 +1,216 @@
+<mat-card>
+    <form [formGroup]="form" (ngSubmit)="onSubmit(userId)">
+    <p>
+        <mat-label>Użytkownik</mat-label>
+    </p>
+
+    <p>
+        <mat-select style="width: 300px;" [(value)] = "userId">
+            <mat-option *ngFor="let user of users" [value]="user.id">
+              {{user.userName}}
+            </mat-option>
+          </mat-select>
+          <button type="submit" mat-button>Wybierz</button>
+    </p>
+    </form>
+    <mat-list>
+        <mat-label style="font-size: 22px; margin-top: 6px">Książki:</mat-label>
+            <mat-list-item>
+                <div style="width: 100px">
+                <mat-label>akceptacja</mat-label>
+                </div>
+                <div style="width: 200px">
+                <button *ngIf="!canBookApprove" mat-button color="warn" (click)="addPermission(userId, 'Book.Approve')">nadaj</button>
+                <button *ngIf="canBookApprove" mat-button color="warn" (click)="addPermission(userId, 'Book.Approve')">cofnij</button>
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <div style="width: 100px">
+                <mat-label>edycja</mat-label>
+                </div>
+                <div style="width: 200px">
+                <button *ngIf="!canBookUpdate" mat-button color="warn" (click)="addPermission(userId, 'Book.Update')">nadaj</button>
+                <button *ngIf="canBookUpdate" mat-button color="warn" (click)="revokePermission(userId, 'Book.Update')">cofnij</button>
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <div style="width: 100px">
+                <mat-label>usuwanie</mat-label>  
+                </div><div style="width: 200px">
+                <button *ngIf="!canBookSoftDelete" mat-button color="warn" (click)="addPermission(userId, 'Book.SoftDelete')">nadaj</button>
+                <button *ngIf="canBookSoftDelete" mat-button color="warn" (click)="revokePermission(userId, 'Book.SoftDelete')">cofnij</button> 
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-divider></mat-divider>
+
+        <mat-label style="font-size: 22px; margin-top: 6px">Autorzy:</mat-label>
+            <mat-list-item>
+                <div style="width: 100px">
+                <mat-label>akceptacja</mat-label>
+                </div><div style="width: 200px">
+                <button *ngIf="!canAuthorApprove" mat-button color="warn" (click)="addPermission(userId, 'Author.Approve')">nadaj</button>
+                <button *ngIf="canAuthorApprove" mat-button color="warn" (click)="revokePermission(userId, 'Author.Approve')">cofnij</button>
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <div style="width: 100px">
+                <mat-label>edycja</mat-label>
+                </div><div style="width: 100px">
+                <button *ngIf="!canAuthorUpdate" mat-button color="warn" (click)="addPermission(userId, 'Author.Update')">nadaj</button>
+                <button *ngIf="canAuthorUpdate" mat-button color="warn" (click)="revokePermission(userId, 'Author.Update')">cofnij</button>
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <div style="width: 100px">
+                <mat-label>usuwanie</mat-label>   
+                </div><div style="width: 100px">
+                <button *ngIf="!canAuthorSoftDelete" mat-button color="warn" (click)="addPermission(userId, 'Author.SoftDelete')">nadaj</button>
+                <button *ngIf="canAuthorSoftDelete" mat-button color="warn" (click)="revokePermission(userId, 'Author.SoftDelete')">cofnij</button>
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-divider></mat-divider>
+
+        <mat-label style="font-size: 22px; margin-top: 6px">Wydawcy:</mat-label>
+            <mat-list-item>
+                <div style="width: 100px">
+                <mat-label>tworzenie</mat-label>
+                </div><div style="width: 100px">
+                <button *ngIf="!canPublisherWrite" mat-button color="warn" (click)="addPermission(userId, 'Publisher.Write')">nadaj</button>
+                <button *ngIf="canPublisherWrite" mat-button color="warn" (click)="revokePermission(userId, 'Publisher.Write')">cofnij</button>
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <div style="width: 100px">
+                <mat-label>edycja</mat-label>
+                </div><div style="width: 100px">
+                <button *ngIf="!canPublisherUpdate" mat-button color="warn" (click)="addPermission(userId, 'Publisher.Update')">nadaj</button>
+                <button *ngIf="canPublisherUpdate" mat-button color="warn" (click)="revokePermission(userId, 'Publisher.Update')">cofnij</button>
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <div style="width: 100px">
+                <mat-label>usuwanie</mat-label>
+                </div><div style="width: 100px">
+                <button *ngIf="!canPublisherSoftDelete" mat-button color="warn" (click)="addPermission(userId, 'Publisher.SoftDelete')">nadaj</button>
+                <button *ngIf="canPublisherSoftDelete" mat-button color="warn" (click)="revokePermission(userId, 'Publisher.SoftDelete')">cofnij</button>
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-divider></mat-divider>
+
+        <mat-label style="font-size: 22px; margin-top: 6px">Kategorie:</mat-label>
+        <mat-list-item>
+            <div style="width: 100px">
+            <mat-label>tworzenie</mat-label>
+            </div><div style="width: 100px">
+            <button *ngIf="!canCategoryWrite" mat-button color="warn" (click)="addPermission(userId, 'Category.Write')">nadaj</button>
+            <button *ngIf="canCategoryWrite" mat-button color="warn" (click)="revokePermission(userId, 'Category.Write')">cofnij</button>
+            </div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            <div style="width: 100px">
+            <mat-label>edycja</mat-label>
+            </div><div style="width: 100px">
+            <button *ngIf="!canCategoryUpdate" mat-button color="warn" (click)="addPermission(userId, 'Category.Update')">nadaj</button>
+            <button *ngIf="canCategoryUpdate" mat-button color="warn" (click)="revokePermission(userId, 'Category.Update')">cofnij</button>
+            </div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            <div style="width: 100px">
+            <mat-label>usuwanie</mat-label>
+            </div><div style="width: 100px">
+            <button *ngIf="!canCategorySoftDelete" mat-button color="warn" (click)="addPermission(userId, 'Category.SoftDelete')">nadaj</button>
+            <button *ngIf="canCategorySoftDelete" mat-button color="warn" (click)="revokePermission(userId, 'Category.SoftDelete')">cofnij</button>
+            </div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-divider></mat-divider>   
+            
+        <mat-label style="font-size: 22px; margin-top: 6px">Języki:</mat-label>
+        <mat-list-item>
+            <div style="width: 100px">
+            <mat-label>tworzenie</mat-label>
+            </div><div style="width: 100px">
+            <button *ngIf="!canLanguageWrite" mat-button color="warn" (click)="addPermission(userId, 'Language.Write')">nadaj</button>
+            <button *ngIf="canLanguageWrite" mat-button color="warn" (click)="revokePermission(userId, 'Language.Write')">cofnij</button>
+            </div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            <div style="width: 100px">
+            <mat-label>edycja</mat-label>
+            </div><div style="width: 100px">
+            <button *ngIf="!canLanguageUpdate" mat-button color="warn" (click)="addPermission(userId, 'Language.Update')">nadaj</button>
+            <button *ngIf="canLanguageUpdate" mat-button color="warn" (click)="revokePermission(userId, 'Language.Update')">cofnij</button>
+            </div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            <div style="width: 100px">
+            <mat-label>usuwanie</mat-label>
+            </div><div style="width: 100px">
+            <button *ngIf="!canLanguageSoftDelete" mat-button color="warn" (click)="addPermission(userId, 'Language.SoftDelete')">nadaj</button>
+            <button *ngIf="canLanguageSoftDelete" mat-button color="warn" (click)="revokePermission(userId, 'Language.SoftDelete')">cofnij</button>
+            </div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-divider></mat-divider> 
+
+        <mat-label style="font-size: 22px; margin-top: 6px">Komentarze:</mat-label>
+            <mat-list-item>
+                <div style="width: 100px">
+                <mat-label>usuwanie</mat-label>
+                </div><div style="width: 100px">
+                <button *ngIf="!canCommentSoftDelete" mat-button color="warn" (click)="addPermission(userId, 'Comment.SoftDelete')">nadaj</button>
+                <button *ngIf="canCommentSoftDelete" mat-button color="warn" (click)="revokePermission(userId, 'Comment.SoftDelete')">cofnij</button>
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-divider></mat-divider>
+
+            <mat-label style="font-size: 22px; margin-top: 6px">Użytkownicy:</mat-label>
+            <mat-list-item>
+                <div style="width: 100px">
+                <mat-label>nadawanie</mat-label>
+                </div><div style="width: 100px">
+                <button *ngIf="!canUserDelete" mat-button color="warn" (click)="addPermission(userId, 'User.Delete')">nadaj</button>
+                <button *ngIf="canUserDelete" mat-button color="warn" (click)="revokePermission(userId, 'User.Delete')">cofnij</button>
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-divider></mat-divider>
+
+        <mat-label style="font-size: 22px; margin-top: 6px">Uprawnienia:</mat-label>
+            <mat-list-item>
+                <div style="width: 100px">
+                <mat-label>nadawanie</mat-label>
+                </div><div style="width: 100px">
+                <button *ngIf="!canUserPermissionWrite" mat-button color="warn" (click)="addPermission(userId, 'UserPermission.Write')">nadaj</button>
+                <button *ngIf="canUserPermissionWrite" mat-button color="warn" (click)="revokePermission(userId, 'UserPermission.Write')">cofnij</button>
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <div style="width: 100px">
+                <mat-label>usuwanie</mat-label>
+                </div><div style="width: 100px">
+                <button *ngIf="!canUserPermissionDelete" mat-button color="warn" (click)="addPermission(userId, 'UserPermission.Delete')">nadaj</button>
+                <button *ngIf="canUserPermissionDelete" mat-button color="warn" (click)="revokePermission(userId, 'UserPermission.Delete')">cofnij</button>
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-divider></mat-divider>        
+        
+    </mat-list>
+
+</mat-card>

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y/input-modality/input-modality-detector';
+import { Component, OnInit, Sanitizer } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { first } from 'rxjs/operators';
@@ -11,6 +13,7 @@ import { ResponderModel } from 'src/app/models/responders/responder-model';
 import { AuthorService } from 'src/app/services/author/author.service';
 import { BookService } from 'src/app/services/book/book.service';
 import { CategoryService } from 'src/app/services/category/category.service';
+import { ImageCoverService } from 'src/app/services/image-cover/image-cover.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { PublisherService } from 'src/app/services/publisher/publisher.service';
 import { UserService } from 'src/app/services/user/user.service';
@@ -30,6 +33,8 @@ export class BookComponent implements OnInit {
   language: LanguageModel = new LanguageModel;
   publisher: PublisherModel = new PublisherModel;
   authors: AuthorModel[] = [new AuthorModel];
+  image: SafeResourceUrl = '';
+  imageCover: any;
 
 
   constructor(
@@ -38,9 +43,11 @@ export class BookComponent implements OnInit {
     private bookService: BookService,
     private userService: UserService,
     private categoryService: CategoryService,
+    private imageService: ImageCoverService,
     private languageService: LanguageService,
     private publisherService: PublisherService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.activetedRoute.params
@@ -60,6 +67,7 @@ export class BookComponent implements OnInit {
           this.getUserName(this.book.createdBy);
           this.getCategory(this.book.categoryId);
           this.getLanguage(this.book.languageId);
+          this.getImageCover('3f84fe07-dd6d-48b8-a7bb-b0d61473dc6c');
         } else {
           this.toastr.show(this.responder.message);
         }
@@ -73,7 +81,12 @@ export class BookComponent implements OnInit {
       .getUserNameById(id)
       .pipe(first())
       .subscribe(response =>{
-        this.userName = response;
+        this.responder = response;
+        if(this.responder.object != null){
+          this.userName = this.responder.object;
+        } else {
+          this.userName = 'brak danych';
+        }
       })
   }
 
@@ -131,6 +144,22 @@ export class BookComponent implements OnInit {
           this.publisher.publisherName = 'brak danych';
         }
       }, error => console.log(`HttpError: ${JSON.stringify(error)}`));
+  }
+
+  public async getImageCover(id: string){
+    return this.imageService
+      .getImages(id)
+      .pipe(first())
+      .subscribe(respond => {
+        let blob = new Blob([respond], {type: 'image/jpg'});
+        var image = URL.createObjectURL(blob);
+        //this.imageCover.querySelector('img').src = URL.createObjectURL(blob)
+        //this.imageCover = this.sanitizer.bypassSecurityTrustUrl(image);
+        //this.sanitizer.bypassSecurityTrustResourceUrl(image);
+        this.imageCover = this.sanitizer.bypassSecurityTrustResourceUrl(`${image}`)
+      }, error =>{
+        console.log(`HttpError: ${JSON.stringify(error)}`);
+      });
   }
 
 }

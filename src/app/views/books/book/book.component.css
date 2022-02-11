@@ -1,7 +1,32 @@
 .mat-card{
     min-width: 400px;
-    max-width: 700px;
+    max-width: 500px;
+    max-height: 600px;
     margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 30px;
+}
+
+.mat-drawer{
+    padding: auto;
+    width: 250px;
+    padding: auto;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mat-drawer-container{
+    width: 800px;   
+}
+
+.center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+
 }

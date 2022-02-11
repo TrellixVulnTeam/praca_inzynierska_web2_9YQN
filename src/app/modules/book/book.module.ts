@@ -23,6 +23,15 @@ import { BookAproveGuard } from 'src/app/guard/books/book-aprove.guard';
 import { BookSoftDeleteGuard } from 'src/app/guard/books/book-soft-delete.guard';
 import { BookUpdateGuard } from 'src/app/guard/books/book-update.guard';
 import { SettingsService } from 'src/app/services/settings/settings.service';
+import { AuthorBooksComponent } from 'src/app/views/books/author-books/author-books.component';
+import { CategoryBooksComponent } from 'src/app/views/books/category-books/category-books.component';
+import { PublisherBooksComponent } from 'src/app/views/books/publisher-books/publisher-books.component';
+import { ImageCoverService } from 'src/app/services/image-cover/image-cover.service';
+import { CommentsComponent } from 'src/app/views/comments/comments/comments.component';
+import { NewCommentComponent } from 'src/app/views/comments/new-comment/new-comment.component';
+import { CommentService } from 'src/app/services/comment/comment.service';
+import { CommentDeleteGuard } from 'src/app/guard/comments/comment-delete.guard';
+import { authInterceptorProviders } from 'src/app/helpers/auth.interceptor';
 
 
 @NgModule({
@@ -44,19 +53,28 @@ import { SettingsService } from 'src/app/services/settings/settings.service';
     ListBooksComponent,
     NewBookComponent,
     EditBookComponent,
-    DeleteBookComponent
+    DeleteBookComponent,
+    AuthorBooksComponent,
+    CategoryBooksComponent,
+    PublisherBooksComponent,
+    CommentsComponent,
+    NewCommentComponent,
   ],
   providers: [
+    authInterceptorProviders,
     BookService,
     CategoryService,
     LanguageService,
     PublisherService,
     SettingsService,
+    ImageCoverService,
+    CommentService,
 
     LoginGuard,
     BookAproveGuard,
     BookSoftDeleteGuard,
     BookUpdateGuard,
+    CommentDeleteGuard
   ]
   
 })

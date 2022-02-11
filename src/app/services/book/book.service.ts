@@ -69,6 +69,56 @@ export class BookService {
       }))
    }
 
+   public getBooksListByUserId(id: string): Observable<ResponderModel | any>{
+     const apiUrl = this.setting.getApiUrl + '/api/Book/GetBooksByUser/' + id;
+
+     return this.httpClient
+      .get(apiUrl, httpOptions)
+      .pipe(map(respond =>{
+        return respond;
+      }), catchError(error =>{
+        return this.handleError(error);
+      }), catchError(error =>{
+        return this.handleError(error);
+      }));
+   }
+
+   public getBookListByAuthorId(id: string): Observable<ResponderModel | any>{
+     const apiUrl = this.setting.getApiUrl + '/api/Book/GetBooksByAuthor/' + id;
+
+     return this.httpClient
+      .get(apiUrl, httpOptions)
+      .pipe(map(respond =>{
+        return respond;
+      }), catchError(error => {
+        return this.handleError(error);
+      }));
+   }
+
+   public getBooksListByCategoryId(id: string): Observable<ResponderModel | any>{
+    const apiUrl = this.setting.getApiUrl + '/api/Book/GetBooksByCategory/' + id;
+
+    return this.httpClient
+     .get(apiUrl, httpOptions)
+     .pipe(map(respond =>{
+       return respond;
+     }), catchError(error => {
+       return this.handleError(error);
+     }));
+  }
+
+  public getBooksListByPublisher(id: string): Observable<ResponderModel | any>{
+    const apiUrl = this.setting.getApiUrl + '/api/Book/GetBooksByPublisher/' + id;
+
+    return this.httpClient
+     .get(apiUrl, httpOptions)
+     .pipe(map(respond =>{
+       return respond;
+     }), catchError(error => {
+       return this.handleError(error);
+     }));
+  }
+
    public approveBook(id: string): Observable<ResponderModel | any>{
      const apiUrl = this.setting.getApiUrl + '/api/Book/ApproveBooks';
 

@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, first, map } from 'rxjs/operators';
@@ -8,6 +8,10 @@ import { __await } from 'tslib';
 import { SettingsService } from '../settings/settings.service';
 
 const PERMISSION_LIST = 'PERMISSIONS_LIST';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +55,30 @@ export class PermissionService {
     } else {
       return '';
     }
+  }
+
+  deletePermission(userId: string, permissionName: string):Observable<any>{
+    const apiUrl = this.seetings.getApiUrl + '/api/UserPermission/DeletePermitionForUser?userId=' + userId + '&permissionName=' + permissionName;
+
+    return this.httpClient
+      .delete(apiUrl, httpOptions)
+      .pipe(map(respond =>{
+        return respond;
+      }), catchError(error =>{
+        return this.handleError(error);
+      }));
+  }
+
+  addPermission(permission: UserPermissionModel): Observable<any>{
+    const apiUrl = this.seetings.getApiUrl + '/api/UserPermission/AddPermission';
+
+    return this.httpClient
+      .post<UserPermissionModel>(apiUrl, permission, httpOptions)
+      .pipe(map(respond =>{
+        return respond;
+      }), catchError(error =>{
+        return this.handleError(error);
+      }))
   }
 
   resetPermissions(){

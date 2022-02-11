@@ -16,9 +16,6 @@ import { RegisterComponent } from './views/user/register/register/register.compo
 import { LoginGuard } from './guard/login/login.guard';
 import { ToastrModule } from 'ngx-toastr';
 import { BookAuthorDeleteGuard } from './guard/book-authors/book-author-delete.guard';
-import { BookAproveGuard } from './guard/books/book-aprove.guard';
-import { BookSoftDeleteGuard } from './guard/books/book-soft-delete.guard';
-import { BookUpdateGuard } from './guard/books/book-update.guard';
 import { CommentDeleteGuard } from './guard/comments/comment-delete.guard';
 import { UserPermissionDeleteGuard } from './guard/user-permissions/user-permission-delete.guard';
 import { UserPermissionUpdateGuard } from './guard/user-permissions/user-permission-update.guard';
@@ -31,14 +28,11 @@ import { UserService } from './services/user/user.service';
 import { CanDeactivateGuard } from './guard/can-deactivate/can-deactivate-guard';
 import { ConfirmYesNoDialogComponent } from './views/confirm-yes-no-dialog/confirm-yes-no-dialog.component';
 import { AdminPanelComponent } from './views/main/admin-panel/admin-panel.component';
-import { BooksComponent } from './views/books/books/books.component';
-import { BookComponent } from './views/books/book/book.component';
-import { ListBooksComponent } from './views/books/list-books/list-books.component';
-import { ApproveBooksComponent } from './views/books/approve-books/approve-books.component';
-import { ApproveBookComponent } from './views/books/approve-book/approve-book.component';
-import { EditBookComponent } from './views/books/edit-book/edit-book.component';
-import { NewBookComponent } from './views/books/new-book/new-book.component';
-import { DeleteBookComponent } from './views/books/delete-book/delete-book.component';
+import { registerLocaleData } from '@angular/common';
+import localePl from '@angular/common/locales/pl';
+import { PermissionsComponent } from './views/user/permissions/permissions.component';
+
+registerLocaleData(localePl, 'pl');
 
 
 @NgModule({
@@ -50,6 +44,7 @@ import { DeleteBookComponent } from './views/books/delete-book/delete-book.compo
     RegisterComponent,
     ConfirmYesNoDialogComponent,
     AdminPanelComponent,
+    PermissionsComponent,
  
   ],
   imports: [
@@ -77,10 +72,6 @@ import { DeleteBookComponent } from './views/books/delete-book/delete-book.compo
     SettingsService,
 
     LoginGuard,
-
-    BookAuthorDeleteGuard,
-
-    CommentDeleteGuard,
 
     UserPermissionDeleteGuard,
     UserPermissionUpdateGuard,

@@ -26,6 +26,10 @@
             <mat-label style="font-size: 18px;">polubienia:</mat-label>
             <mat-label style="padding-left: 116px;">{{userMe.likes}}</mat-label>
           </p>
+          <p>
+            <mat-label style="font-size: 18px;">Moje ulubione książki:</mat-label>
+            <a [routerLink]="['books/book-list/list-books/', userMe.id]" mat-button style="padding-left: 16px;">zobacz</a>
+          </p>
          </mat-card>        
           
     </mat-tab>

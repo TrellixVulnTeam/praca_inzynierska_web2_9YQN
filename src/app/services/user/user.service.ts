@@ -143,34 +143,17 @@ export class UserService {
     return '';
   }
 
-  /*
-  login(userName: string, password: string)
-  {
-      const apiUrl = this.settingsService.getApiUrl + `/api/Authorization/Login`;
+  getAllUsers(): Observable<ResponderModel | any>{
+    const apiUrl = this.settingsService.getApiUrl + '/api/User/GetAllUsers';
 
-      //httpOptions.params = new HttpParams()
-      //  .set(`login`, userName)
-      //  .set(`password`, password);
-
-      var userModel = new LoginModel();
-      userModel.login = userName;
-      userModel.password = password;
-
-      return this.httpClient
-        .post(apiUrl, userModel)
-        .pipe(map(authTokenWithUser => {
-          console.log("RES: " + JSON.stringify(authTokenWithUser));
-
-          localStorage.setItem('authTokenWithUser', JSON.stringify(authTokenWithUser));
-
-          return authTokenWithUser;
-        }),
-          catchError(error => {
-            return this.handleError(error);
-          }));
-
+    return this.httpClient
+      .get<ResponderModel>(apiUrl, httpOptions)
+      .pipe(map(respond => {
+        return respond;
+      }), catchError(error =>{
+        return this.handleError(error);
+      }))
   }
-  */
 
   private handleError(error: HttpErrorResponse): Observable<never> {
     console.log(`HttpError: ${JSON.stringify(error)}`);
