@@ -51,6 +51,7 @@ export class NewCommentComponent implements OnInit {
     this.comment.addedBy = this.userService.getUserId();
     this.comment.userName = this.userService.getUserName();
     this.createComment();
+    this.router.navigate([`/books/book/${this.bookId}`]);
   }
 
   createComment(){

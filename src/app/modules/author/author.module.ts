@@ -18,10 +18,8 @@ import { AuthorApproveGuard } from 'src/app/guard/authors/author-approve.guard';
 import { AuthorUpdateGuard } from 'src/app/guard/authors/author-update.guard';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { AppRoutingModule } from 'src/app/app-routing.module';
+
 
 
 @NgModule({

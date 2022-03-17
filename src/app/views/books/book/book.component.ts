@@ -3,20 +3,23 @@ import { Component, OnInit, Sanitizer } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { first } from 'rxjs/operators';
+import { first, subscribeOn } from 'rxjs/operators';
 import { AuthorModel } from 'src/app/models/authors/author-model';
 import { BookModel } from 'src/app/models/books/book.model';
+import { BookUserModel } from 'src/app/models/book_users/book_user.model';
 import { CategoryModel } from 'src/app/models/categories/category-models';
 import { LanguageModel } from 'src/app/models/languages/language.model';
 import { PublisherModel } from 'src/app/models/publishers/punblisher.model';
 import { ResponderModel } from 'src/app/models/responders/responder-model';
 import { AuthorService } from 'src/app/services/author/author.service';
 import { BookService } from 'src/app/services/book/book.service';
+import { BookUserService } from 'src/app/services/book_user/book-user.service';
 import { CategoryService } from 'src/app/services/category/category.service';
 import { ImageCoverService } from 'src/app/services/image-cover/image-cover.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { PublisherService } from 'src/app/services/publisher/publisher.service';
 import { UserService } from 'src/app/services/user/user.service';
+import { BookAuthorService} from 'src/app/services/book_author/book-author.service';
 
 
 @Component({
@@ -32,7 +35,7 @@ export class BookComponent implements OnInit {
   category: CategoryModel = new CategoryModel;
   language: LanguageModel = new LanguageModel;
   publisher: PublisherModel = new PublisherModel;
-  authors: AuthorModel[] = [new AuthorModel];
+  author: AuthorModel = new AuthorModel;
   image: SafeResourceUrl = '';
   imageCover: any;
 
@@ -46,6 +49,8 @@ export class BookComponent implements OnInit {
     private imageService: ImageCoverService,
     private languageService: LanguageService,
     private publisherService: PublisherService,
+    private bookUserService: BookUserService,
+    private bookAuthorService: BookAuthorService,
     private toastr: ToastrService,
     private sanitizer: DomSanitizer) { }
 
@@ -66,8 +71,10 @@ export class BookComponent implements OnInit {
           this.book = this.responder.object;
           this.getUserName(this.book.createdBy);
           this.getCategory(this.book.categoryId);
+          this.getPublisher(this.book.publisherId);
           this.getLanguage(this.book.languageId);
-          this.getImageCover('3f84fe07-dd6d-48b8-a7bb-b0d61473dc6c');
+          this.getImageCover(this.book.imageCoverId);
+          this.getAuthors(this.book.id);
         } else {
           this.toastr.show(this.responder.message);
         }
@@ -91,17 +98,30 @@ export class BookComponent implements OnInit {
   }
 
   getAuthors(id: string){
-    return this.authorService
-      .getAuthorByIds(id)
+    return this.bookAuthorService
+      .getAuthorsIdsByBook(id)
       .pipe(first())
       .subscribe(respond =>{
         this.responder = respond;
         if(this.responder.object != null){
-          this.authors = this.responder.object;
+         this.getAuthorsData(this.responder.object);
         } 
       }, error =>{
         console.log(`HttpError: ${JSON.stringify(error)}`);
       });
+  }
+
+  getAuthorsData(id: string){
+    return this.authorService.getAuthorById(id)
+      .pipe(first())
+      .subscribe(respond =>{
+        this.responder = respond;
+        if(this.responder.object != null){
+          this.author = this.responder.object;
+        }
+      }, error =>{
+        console.log(`HttpError: ${JSON.stringify(error)}`);
+      })
   }
 
   getCategory(id: string){
@@ -153,13 +173,29 @@ export class BookComponent implements OnInit {
       .subscribe(respond => {
         let blob = new Blob([respond], {type: 'image/jpg'});
         var image = URL.createObjectURL(blob);
-        //this.imageCover.querySelector('img').src = URL.createObjectURL(blob)
-        //this.imageCover = this.sanitizer.bypassSecurityTrustUrl(image);
-        //this.sanitizer.bypassSecurityTrustResourceUrl(image);
         this.imageCover = this.sanitizer.bypassSecurityTrustResourceUrl(`${image}`)
       }, error =>{
         console.log(`HttpError: ${JSON.stringify(error)}`);
       });
+  }
+
+  addBookToUserList(){
+    var bookUser = new BookUserModel;
+    bookUser.bookId = this.bookId;
+    bookUser.userId = this.userService.getUserId();
+    bookUser.isBuildIn = true;
+
+    this.bookUserService
+      .AddBookToUserList(bookUser)
+      .pipe(first())
+      .subscribe(respond =>{
+        this.responder = respond;
+        if(this.responder.success){
+          this.toastr.show('Książka została dodana do listy');
+        }
+      }, error =>{
+        console.log(`HttpError: ${JSON.stringify(error)}`);
+      })
   }
 
 }

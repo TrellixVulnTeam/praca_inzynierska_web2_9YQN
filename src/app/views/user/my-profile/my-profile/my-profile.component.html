@@ -21,14 +21,10 @@
           <p>
             <mat-label style="font-size: 18px;">płeć:</mat-label>
             <mat-label style="padding-left: 164px;">{{userMe.sex}}</mat-label>
-          </p>
-          <p>
-            <mat-label style="font-size: 18px;">polubienia:</mat-label>
-            <mat-label style="padding-left: 116px;">{{userMe.likes}}</mat-label>
-          </p>
+          </p>        
           <p>
             <mat-label style="font-size: 18px;">Moje ulubione książki:</mat-label>
-            <a [routerLink]="['books/book-list/list-books/', userMe.id]" mat-button style="padding-left: 16px;">zobacz</a>
+            <a [routerLink]="['/books/list-books/', userMe.id]" button mat-button style="padding-left: 16px;">zobacz</a>
           </p>
          </mat-card>        
           
@@ -37,7 +33,7 @@
             <mat-card style="margin-top: 40px; padding-top: 40px;">
               <mat-label style="font-size: 24px;">ZMIANA HASŁA</mat-label>
               <mat-card-content>
-            <form [formGroup]="formPassword" (ngSubmit)="changePassword()">
+                <form [formGroup]="formPassword" (ngSubmit)="changePassword()">
               <p>
                 <mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 40px">
                   <mat-label>Poprzednie hasło</mat-label>
@@ -59,7 +55,6 @@
               </p>
           
             </form>
-          
             </mat-card-content>
             </mat-card>
     </mat-tab>
@@ -97,7 +92,6 @@
         </p>
     
       </form>
-    
       </mat-card-content>
       </mat-card>
 

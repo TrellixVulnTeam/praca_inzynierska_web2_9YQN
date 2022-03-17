@@ -1,6 +1,5 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { LanguageModel } from 'src/app/models/languages/language.model';
@@ -18,8 +17,7 @@ export class LanguageService {
 
   constructor(
     private settings: SettingsService,
-    private httpClient: HttpClient,
-    private toastr: ToastrService) { }
+    private httpClient: HttpClient) { }
 
     getAllLanguages(): Observable<ResponderModel | any>{
       const apiUrl = this.settings.getApiUrl + '/api/Language/GetAllLanguages';
@@ -30,7 +28,6 @@ export class LanguageService {
           return response;
         }),
         catchError(error =>{
-          this.toastr.error(error.error);
           return this.handleError(error);
         }));
     }
@@ -44,7 +41,6 @@ export class LanguageService {
           return response;
         }),
         catchError(error =>{
-          this.toastr.error(error.error);
           return this.handleError(error);
         }));
     }
@@ -58,7 +54,6 @@ export class LanguageService {
           return response;
         }),
         catchError(error =>{
-          this.toastr.error(error.error);
           return this.handleError(error);
         }));
     }
@@ -72,8 +67,7 @@ export class LanguageService {
           return response;
         }),
         catchError(error =>{
-          return this.handleError(error);
-          
+          return this.handleError(error);        
         }));
     }
 

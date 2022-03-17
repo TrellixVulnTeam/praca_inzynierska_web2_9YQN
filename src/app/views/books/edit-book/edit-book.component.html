@@ -1,1 +1,121 @@
-<p>edit-book works!</p>
+<mat-card style="margin-top: 40px; padding-top: 40px;">
+    <mat-label style="font-size: 24px;">Edycja książki</mat-label>
+  <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <p>
+              <mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 40px">
+                  <mat-label>tytuł</mat-label>
+                  <input type="text" matInput placeholder={{book.title}} formControlName="title">
+              </mat-form-field>
+          </p>
+ 
+          <p>
+              <mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 20px">
+                  <mat-label>podtytuł</mat-label>
+                  <input type="text" matInput placeholder={{book.subtitle}} formControlName="subtitle">
+              </mat-form-field>
+          </p>
+
+          <p>
+              <mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 20px">
+                  <mat-label>seria</mat-label>
+                  <input type="text" matInput placeholder={{book.series}} formControlName="series">
+              </mat-form-field>
+          </p>
+
+          <p>
+              <mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 20px">
+                  <mat-select style="width: 350px;" [(value)] = "authorId" placeholder="autorzy">
+                      <mat-option *ngFor="let author of authors" [value]="author.id">
+                          <div style="width: 200px; float: left;">
+                              <button mat-button color="primary" (click)="addAuthor(author.id)">{{author.surname}} {{author.name}}</button>
+                          </div>
+                      </mat-option>
+                  </mat-select> 
+              </mat-form-field>
+              <mat-list *ngFor="let addedAuthor of addedAuthors; let i = index;">
+                  <mat-list-item>
+                      <div style="width: 200px; float: left;">
+                          {{addedAuthor.surname}} {{addedAuthor.name}} 
+                      </div>
+                      <div style="width: 100px;">
+                          <button mat-button color="warn" (click)="removeAuthor(i)">usuń</button>
+                      </div>
+                  </mat-list-item>
+              </mat-list>
+          </p>
+
+          <p>
+              <img [src]="imageCover" width="200px"/>
+          </p>
+
+          <p>
+              <input type="file" placeholder="wybierz plik" (change)="uploadImage($event)" />
+          </p>
+
+          <p>
+              <mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 20px">
+                  <mat-label>opis</mat-label>
+                  <textarea type="text" matInput placeholder={{book.description}} formControlName="description"></textarea>
+              </mat-form-field>
+          </p>
+
+          <p>
+              <mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 20px">
+                  <mat-select style="width: 350px;" [(value)] = "categoryId" placeholder={{categoryName}}>
+                      <mat-option *ngFor="let category of categories" [value]="category.id">
+                          {{category.category}}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field>
+          </p>
+
+          <p>
+              <mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 20px">
+                  <mat-select style="width: 350px;" [(value)] = "publisherId" placeholder={{publisherName}}>
+                      <mat-option *ngFor="let publisher of publishers" [value]="publisher.id">
+                          {{publisher.publisherName}}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field>
+          </p>
+
+          <p>
+              <mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 20px">
+                  <mat-select style="width: 350px;" [(value)] = "languageId" placeholder={{languageName}}>
+                      <mat-option *ngFor="let language of languages" [value]="language.id">
+                          {{language.language}}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field>
+          </p>
+
+          <p>
+              <mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 20px">
+                  <mat-label>rok wydania</mat-label>
+                  <input type="text" matInput placeholder={{book.publishedYear}} formControlName="publishedYear">
+              </mat-form-field>
+          </p>
+
+          <p>
+              <mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 20px">
+                  <mat-label>isbn</mat-label>
+                  <input type="text" matInput placeholder={{book.isbn}} formControlName="isbn">
+              </mat-form-field>
+          </p>
+
+          <p>
+              <mat-form-field [style.width.px]=350 style="margin: auto; margin-top: 20px">
+                  <mat-label>strony</mat-label>
+                  <input type="text" matInput placeholder={{book.pages}} formControlName="pages">
+              </mat-form-field>
+          </p>
+
+          <p>
+              <button type="submit" mat-raised-button color="accent" style="margin-top: 30px;">Zmień</button>
+          </p>
+
+      </form>
+
+  </mat-card-content>
+</mat-card>

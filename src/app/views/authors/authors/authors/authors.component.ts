@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { first } from 'rxjs/internal/operators/first';
+import { first } from 'rxjs/operators';
 import { AuthorModel } from 'src/app/models/authors/author-model';
 import { ResponderModel } from 'src/app/models/responders/responder-model';
 import { AuthorService } from 'src/app/services/author/author.service';

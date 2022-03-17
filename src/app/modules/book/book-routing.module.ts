@@ -26,8 +26,8 @@ const routes: Routes = [
     {path: 'approves', component: ApproveBooksComponent, canLoad: [LoginGuard, BookAproveGuard]},
     {path: 'approve/:id', component: ApproveBooksComponent, canLoad: [LoginGuard, BookAproveGuard]},
     {path: 'new-book', component: NewBookComponent, canLoad: [LoginGuard]},
-    {path: 'edit/:id', component: EditBookComponent, canLoad: [LoginGuard, BookUpdateGuard]},
-    {path: 'delete/:id', component: DeleteBookComponent, canLoad: [LoginGuard, BookSoftDeleteGuard]}
+    {path: 'edit-book/:id', component: EditBookComponent, canLoad: [LoginGuard, BookUpdateGuard]},
+    {path: 'delete-book/:id', component: DeleteBookComponent, canLoad: [LoginGuard, BookSoftDeleteGuard]}
   ]}
 ];
 

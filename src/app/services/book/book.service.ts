@@ -4,7 +4,6 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { BookModel } from 'src/app/models/books/book.model';
 import { ResponderModel } from 'src/app/models/responders/responder-model';
-import { BookAuthorService } from '../book_author/book-author.service';
 import { SettingsService } from '../settings/settings.service';
 import { UserService } from '../user/user.service';
 
@@ -31,7 +30,31 @@ export class BookService {
     private user: UserService) {
    }
 
-  public getAllBooks(): Observable<ResponderModel | any>{
+   public createBook(book: BookModel): Observable<ResponderModel | any>{
+     const apiUrl = this.setting.getApiUrl + '/api/Book/CreateBook';
+
+     return this.httpClient
+      .post<BookModel>(apiUrl, book, httpOptions)
+      .pipe(map(response =>{
+        return response;
+      }), catchError(error =>{
+        return this.handleError(error);
+      }))
+   }
+
+   public updateBook(book: BookModel): Observable<ResponderModel | any>{
+     const apiUrl = this.setting.getApiUrl + '/api/Book/UpdateBook';
+
+     return this.httpClient
+      .post<BookModel>(apiUrl, book, httpOptions)
+      .pipe(map( respond =>{
+        return respond;
+      }), catchError(error =>{
+        return this.handleError(error);
+      }));
+   }
+
+    public getAllBooks(): Observable<ResponderModel | any>{
      const apiUrl = this.setting.getApiUrl + '/api/Book/GetAllBooks';
 
      return this.httpClient
@@ -105,6 +128,18 @@ export class BookService {
      }), catchError(error => {
        return this.handleError(error);
      }));
+  }
+
+  public getHighlightedBooks(): Observable<ResponderModel | any>{
+    const apiUrl = this.setting.getApiUrl + '/api/Book/GetHighlithed';
+
+    return this.httpClient
+      .get(apiUrl, httpOptions)
+      .pipe(map(respond =>{
+        return respond;
+      }), catchError(error =>{
+        return this.handleError(error);
+      }));
   }
 
   public getBooksListByPublisher(id: string): Observable<ResponderModel | any>{

@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { ResponderModel } from 'src/app/models/responders/responder-model';
 import { SettingsService } from '../settings/settings.service';
 
 const httpOptions = {
@@ -18,7 +19,7 @@ export class ImageCoverService {
     private httpClient: HttpClient,
     ) { }
 
-    getImages(id: string): Observable<string | any>{
+    public getImages(id: string): Observable<string | any>{
       const apiUrl = this.setting.getApiUrl + '/api/ImageCover/GetImageCoverById/' + id;
 
       return this.httpClient.get(apiUrl, {responseType: 'blob' })
@@ -27,8 +28,21 @@ export class ImageCoverService {
       }), catchError(error =>{
         return this.handleError(error);
       }));
-      }
+    }
 
+    public uploadImage(file: File): Observable<ResponderModel | any>{
+      const apiUrl = this.setting.getApiUrl + '/api/ImageCover/CreateImageCover';
+      const formData = new FormData(); 
+      formData.append("file", file, file.name);
+
+      return this.httpClient
+        .post(apiUrl, formData, httpOptions)
+        .pipe(map(respond =>{
+          return respond;
+        }), catchError(error =>{
+          return this.handleError(error);
+        }))
+    }
 
     private handleError(error: HttpErrorResponse): Observable<never> {
       console.log(`HttpError: ${JSON.stringify(error)}`);
@@ -36,7 +50,5 @@ export class ImageCoverService {
       return throwError(error);
     }
 }
-function switchMap(arg0: (response: any) => Observable<string>): import("rxjs").OperatorFunction<Object, unknown> {
-  throw new Error('Function not implemented.');
-}
+
 

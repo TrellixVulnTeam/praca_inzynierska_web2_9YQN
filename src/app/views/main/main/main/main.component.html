@@ -1,0 +1,51 @@
+<mat-drawer-container style="min-height: 30px;">
+    <mat-drawer mode="side" opened style="width: 290px;">
+        <mat-card>
+            <mat-card-content>
+                <mat-list *ngFor="let image of imageCovers" style="padding-top: 20px; padding-left: auto; padding-right: auto;">
+                    <mat-list-item style="height: 338px;">
+                        <img [src]="image " width="200px"/>
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                </mat-list>
+            </mat-card-content>
+        </mat-card>
+    </mat-drawer>
+    <mat-drawer-content>
+        <mat-card>
+            <mat-card-content style="text-align: left;">
+                <mat-list *ngFor="let book of highlightedBooks" style="padding-left: 50px; min-height: 350px;">
+                    <mat-list-item class="no-wrap" style="height: 350px;">
+                        <p matLine>
+                            <a button mat-button [routerLink]="['/books/book', book.id]">
+                                <mat-label style="font-size: 18px; padding-left: 22px;">Tytuł:</mat-label>
+                                <mat-label style="font-size: 14px; padding-left: 20px;">{{book.title}}</mat-label>
+                            </a>
+                        </p> 
+                        
+                        <p matLine *ngIf="book.subtitle != null" style="padding-top: 20px">
+                            <a button mat-button [routerLink]="['/books/book', book.id]">
+                                <mat-label style="font-size: 18px; padding-left: 20px;">Podtytuł:</mat-label>
+                                <mat-label style="font-size: 14px; padding-left: 20px;">{{book.subtitle}}</mat-label>
+                            </a>
+                        </p>
+                        <p matLine *ngIf="book.series != null" style="padding-top: 20px">
+                            <a button mat-button [routerLink]="['/books/book', book.id]">
+                                <mat-label style="font-size: 18px; padding-left: 20px;">Seria:</mat-label>
+                                <mat-label style="font-size: 14px; padding-left: 20px;">{{book.series}}</mat-label>
+                            </a> 
+                        </p>
+
+                        <p matLine style="padding-top: 20px">
+                            <mat-label style="font-size: 18px; padding-left: 36px;">Opis:</mat-label>
+                            <mat-label style="font-size: 14px; padding-left: 36px; padding-right: 20px;">{{book.description}}</mat-label>
+                        </p>                       
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                </mat-list>
+            
+            </mat-card-content>
+        </mat-card>
+        
+    </mat-drawer-content>
+  </mat-drawer-container>

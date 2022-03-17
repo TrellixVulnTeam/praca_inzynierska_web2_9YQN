@@ -46,6 +46,7 @@ export class MyProfileComponent implements OnInit {
          firstName: this.firstName,
          lastName: this.lastName
       });
+      
     }
 
   ngOnInit(): void {

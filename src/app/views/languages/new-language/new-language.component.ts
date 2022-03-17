@@ -49,7 +49,6 @@ export class NewLanguageComponent {
       .newLanguage(newLanguage)
       .pipe(first())
       .subscribe(respond =>{
-        this.toastr.show(respond);
         this.router.navigate(['/languages']);
       }, error =>{
         console.log(error.error);

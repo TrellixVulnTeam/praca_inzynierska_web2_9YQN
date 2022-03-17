@@ -1,6 +1,7 @@
 <mat-drawer-container class="center">
     <mat-drawer mode="side" opened style="padding-top: 30px; padding-left: 20px; padding-right: auto;">
         <img [src]="imageCover" width="200px"/>
+        <!--<button mat-button (click)="addBookToUserList()"><mat-icons>favorite</mat-icons></button>-->
     </mat-drawer>}}
     <mat-drawer-content>
         <mat-card>
@@ -24,7 +25,7 @@
         
                 <p>
                     <mat-label style="font-size: 18px; padding-left: 20px;">Autorzy:</mat-label>
-                    <mat-list *ngFor="let author of authors">
+                    <mat-list>
                         <mat-list-item>
                             <p>
                                 

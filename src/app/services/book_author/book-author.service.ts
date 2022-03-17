@@ -23,6 +23,18 @@ export class BookAuthorService {
     private settings: SettingsService
   ) { }
 
+  public createBook_Author(authorId: string, bookId: string){
+    const apiUrl = this.settings.getApiUrl + '/api/Book_Author/CreateAuthorForBook';
+
+    return this.httpClient
+      .post(apiUrl, {authorId, bookId}, httpOptions)
+      .pipe(map(respond =>{
+        return respond;
+      }), catchError(error =>{
+        return this.handleError(error);
+      }))
+  }
+
   public getAuthorsIdsByBook(id: string): Observable<ResponderModel | any>{
     const apiUrl = this.settings.getApiUrl + '/api/Book_Author/GetAllAuthorsByBook/' + id;
 

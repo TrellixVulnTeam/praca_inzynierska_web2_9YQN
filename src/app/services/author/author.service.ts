@@ -78,7 +78,6 @@ export class AuthorService {
         .pipe(map(responder =>{
           return responder;
         }), catchError(error =>{
-          this.toastr.error(error.error);
           return this.handleError(error);
         }));
     }
@@ -116,7 +115,7 @@ export class AuthorService {
       const apiUrl = this.settings.getApiUrl + '/api/author/CreateAuthor';
 
       return this.httpClient
-        .post<AuthorModel>(apiUrl, {author}, httpOptions)
+        .post<AuthorModel>(apiUrl, author, httpOptions)
         .pipe(map(responder => {
           return responder;
         }), catchError(error =>{
